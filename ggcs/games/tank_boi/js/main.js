@@ -190,13 +190,11 @@ var music = {
         src: ['sounds/music/space.mp3'],
         volume: musicVol,
         loop: true,
-        html5: true
+        html5: true,
+        autoplay: true
     })
 }
 
-music.backMusic.on('load', function(){
-    music.backMusic.play()
-})
 var sfxVol = 0.1;
 
 var sfxPack = 'sounds/sfx'
