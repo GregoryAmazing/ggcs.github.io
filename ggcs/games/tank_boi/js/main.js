@@ -194,11 +194,7 @@ var music = {
     })
 }
 
-music.backMusic.on('load', function(){
-    setTimeout(() => {
-        music.backMusic.play()
-    }, 2000);
-})
+
 var sfxVol = 0.1;
 
 var sfxPack = 'sounds/sfx'
@@ -410,8 +406,8 @@ setInterval(function()
         logoTimeout-=10
         txt('Gregory Game Creation Studio presents...', cw/2, (ch/2)+150, 20,'white','PressStart2PRegular',false,'center')
         ctx.drawImage(logo, (cw/2)-128, (ch/2)-128)
-        
-    }
+    } else
+        music.backMusic.play()
 
 }, 20)
 
