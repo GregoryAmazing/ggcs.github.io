@@ -1,0 +1,145 @@
+
+
+#header{
+    width: 100%;
+    height: 50px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#logoimg{
+    height: 50px;
+    margin: 0;
+    position: absolute;
+}
+
+#title{
+    font-size: 25px;
+    font-family: 'PressStart2PRegular';
+    line-height: 1.6;
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+
+#tabDiv{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+
+.tab{
+    background: #33aa38;
+    border: none;
+    height: 100%;
+    width: 200px;
+    color: white;
+    font-size: 15px;
+    font-family: 'PressStart2PRegular';
+    line-height: 1.6;
+    font-weight: normal; 
+    font-style: normal;
+    -webkit-transition:  0.5s; /* Safari */
+    transition: 0.5s;
+}
+
+.tab:hover{
+    background: #31a036;
+    cursor: pointer;
+    font-size: 16px;
+    transform: skewY(-5deg);
+}
+
+
+.mainContent{
+    margin-top: 1em;
+    height: min-content;
+    width: 100%;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background: #e5e5e5;
+    color: black;
+    font-size: 15px;
+    font-family: 'PressStart2PRegular';
+    line-height: 2.5;
+    font-weight: bold; 
+    font-style: normal;
+}
+
+#aboutText{
+    padding-bottom: 1em;
+    margin: auto;
+    margin-top: 2em;
+    width: 50%;
+     
+}
+
+#about{
+    display: none;
+}
+
+#games{
+    display: none;
+    text-align: start;
+}
+
+.game{
+    display: inline-block;
+    width: 300px;
+    height: 400px;
+    margin: 2em;
+    background-image: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) ), url("img/tankboi.png");
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    -webkit-transition:  0.5s; /* Safari */
+    transition: 0.5s;
+}
+
+.game:hover{
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.22);
+    transform: scaleY(1.1);
+}
+
+
+
+a:link {
+    color: white;
+    background: #33aa38;
+    padding: 0.5em;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    background: #228827;
+}
+
+a:active {
+    color: white;
+}
+
+#updates{
+    display: block;
+}
+
+.update{
+    margin: 0.5em;
+    padding: 0em 1em;
+    text-align: start;
+    border: solid 4px grey;
+}
+
+.date{
+    padding: 0.5em;
+    width: min-content;
+    font-size: 13px;
+    background-color: #33aa38;
+}
