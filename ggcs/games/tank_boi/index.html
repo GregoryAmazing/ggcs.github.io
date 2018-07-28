@@ -1,0 +1,147 @@
+<script src="js/framework.js" defer></script>
+<script src="js/keycontrol.js" defer></script>
+<script src="js/gamefunctions.js" defer></script>
+<script src="js/main.js" defer></script>
+
+<script src="frameworks/node_modules/howler/dist/howler.js"></script>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/press-start-2p" type="text/css"/>
+
+<style>
+    body{
+        margin: 0;
+    }
+    canvas{
+        display: block;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #2f0051;
+    }
+    #musicVol, #sfxVol{
+        display: inline;
+        margin: 1em 0.5em;
+    }
+    #settings{
+        display: none;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0;
+        position: absolute;
+        height: 500px;
+        width: 40%;
+        top: 0;
+        right: 5%;
+        text-align: center;
+    }
+
+    #credits{
+        display: none;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0;
+        position: absolute;
+        height: min-content;
+        width: 40%;
+        top: 0;
+        right: 5%;
+        text-align: center;
+    }
+
+    #creditsText{
+        margin: 1em 0.5em;
+        color: white;
+        font-size: 20px;
+        font-family: 'PressStart2PRegular';
+        line-height: 1.6;
+        font-weight: normal; 
+        font-style: normal; 
+    }
+
+    #label{
+        margin: 1em 0.5em;
+        color: white;
+        font-size: 20px;
+        font-family: 'PressStart2PRegular'; 
+        font-weight: normal; 
+        font-style: normal; 
+    }
+    .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    border: 4px solid white;
+    background: transparent;
+    outline: none;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: white;
+        cursor: e-resize;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border: 3px;
+        border: 3px black;
+        cursor: e-resize;
+    }
+    #saveSettings{
+        width: 100%;
+        border: none;
+        padding: 1em;
+        color: white;
+        background-color: transparent;
+        font-size: 20px;
+        font-family: 'PressStart2PRegular'; 
+        font-weight: normal; 
+        font-style: normal; 
+    }
+
+    a:link {
+    color: royalblue;
+    }
+
+    /* visited link */
+    a:visited {
+        color: rgb(56, 89, 189);
+    }
+
+    /* mouse over link */
+    a:hover {
+        color: rgb(44, 87, 216);
+    }
+
+    /* selected link */
+    a:active {
+        color: royalblue;
+    }
+</style>
+<canvas></canvas>
+<div id="settings">
+    <p id="label">Music Volume</p>
+    <input type="range" min="0" max="10" value="10" id="musicVol" class="slider">
+    <p id="label">SFX Volume</p>
+    <input type="range" min="0" max="10" value="1" id="sfxVol" class="slider">
+    <button id="saveSettings" onclick="saveVolSettings()">Save</button>
+</div>
+
+<div id="credits">
+    <br>
+    <br>
+    <p id="creditsText">Created by <a href="https://romanovsky-g.github.io/ggcs" target="_blank" id="ggcs">Gregory Game Creation Studio</a></p>
+    <br>
+    <br>
+    <p id="creditsText">With help of <a href="https://opengameart.org/" target="_blank" id="oga">OpenGameArt.org</a>
+        and a JavaScript framework <a href="https://github.com/goldfire/howler.js" target="_blank" id="hwlr">Howler.js</a></p>
+</div>
+
