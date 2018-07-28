@@ -120,6 +120,8 @@ user.settings =
     sfx: {on: true, volume: 0.2}
 }
 
+
+
 window.onload = function()
 {
     if(localStorage.sfxVol && localStorage.musicVol)
@@ -406,8 +408,7 @@ setInterval(function()
         logoTimeout-=10
         txt('Gregory Game Creation Studio presents...', cw/2, (ch/2)+150, 20,'white','PressStart2PRegular',false,'center')
         ctx.drawImage(logo, (cw/2)-128, (ch/2)-128)
-    } else
-        music.backMusic.play()
+    }
 
 }, 20)
 

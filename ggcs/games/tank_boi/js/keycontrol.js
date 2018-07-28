@@ -101,9 +101,10 @@ var mouse =
 
 
 document.addEventListener('click', function(){
-    if(areColiding(playBtn, mouse) && startScreen)
+    if(areColiding(playBtn, mouse) && startScreen && !music.backMusic.playing())
     {
         spawnExplosion(mouse.x-70,mouse.y-70)
+        music.backMusic.play()
         startScreen = false;
         gameStarted = true;
         gamePaused = false;
