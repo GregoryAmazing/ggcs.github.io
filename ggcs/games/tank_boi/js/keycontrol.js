@@ -59,9 +59,6 @@ document.addEventListener('keyup', function(e) {
         spawnbullet(boi.x,boi.y)
         playSFX("lazer")
     }
-
-    if(e.keyCode===85)
-        levelUpCheker(true);
     
     if(e.keyCode === 49 && upgradeScreen)
     {
@@ -71,11 +68,6 @@ document.addEventListener('keyup', function(e) {
     if(e.keyCode === 50 && upgradeScreen)
     {
         upgrade('bullet')
-    }
-
-    if(e.key === 'c')
-    {
-        saveToLS('coins', 100000);
     }
 });
 
