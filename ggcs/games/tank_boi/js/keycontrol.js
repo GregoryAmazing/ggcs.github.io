@@ -1,7 +1,4 @@
 
-
-
-
 document.addEventListener('keydown', function(e){
     if(e.keyCode===83 && !gamePaused)
     {
@@ -17,24 +14,24 @@ document.addEventListener('keydown', function(e){
         tutorial = false;
     }
 
-    if(e.key === '9')
+    if(e.keyCode === 57)
     {
         boi.health = 0;
     }
 
-    if(e.key === '0')
+    if(e.keyCode === 48)
     {
         localStorage.clear();
         location.reload();
     }
 
-    if(e.key === 'p' && !gamePaused)
+    if(e.keyCode === 80 && !gamePaused)
     {
         gamePaused = true;
         clearInterval(updateExplosions)
         clearInterval(meteorSpawner)
         clearInterval(cometSpawner)
-    } else if (e.key === 'o' && gamePaused)
+    } else if (e.keyCode === 79 && gamePaused)
     {
         gamePaused = false;
         updateExplosions = setInterval(updateExpl,50)
@@ -43,14 +40,6 @@ document.addEventListener('keydown', function(e){
 
         meteorSpawner = setInterval(spawnMeteor, meteorSpeed)
     }
-
-    if(e.keyCode===82)
-    {
-        deleteAll()
-        boi.y = (ch/2)-(boi.h/2);
-        boi.health = 100
-    }
-    
 })
 
 document.addEventListener('keyup', function(e) {
