@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/main.js" defer></script>
+    <style>
+        body{
+            margin: 0;
+        }
+
+        #eq{
+            margin: auto;
+            margin-top: 1em;
+            width: min-content;
+            padding: 0.5em;
+            font-size: 100px;
+            text-align: center;
+        }
+
+        #input{
+            padding-left: 0.2em;
+            font-size: 100px;
+            width: 4em;
+        }
+
+        #ecount{
+            display: inline-block;
+            margin: 0.5em;
+            margin-left: 0;
+            font-size: 30px;
+        }
+        #ecounttxt{
+            margin: 0.5em;
+            margin-right: 0;
+            font-size: 30px;
+        }
+
+        #cat{
+            position: relative;
+            height: 300px;
+            float: right;
+            margin-right: 4em;
+        }
+        
+    </style>
+
+    <title>Count</title>
+</head>
+<body>
+    <span id="ecounttxt">Right answers: </span><span id="ecount">0</span>
+    <div id="eq">
+        <span id="term1"></span><span>+</span><span id="term2"></span><span>=</span><input type="number" id="input">
+    </div>
+    <img src="wait.jpg" id="cat">
+</body>
+</html>
