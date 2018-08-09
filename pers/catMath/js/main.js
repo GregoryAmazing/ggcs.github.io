@@ -61,7 +61,7 @@ document.addEventListener('keyup', e=>{
     if(e.keyCode === 39){
         cat.src = 'cheat.jpg'
         ans.value = ''
-        ans.style.background = '#35ff23'
+        ans.style.background = 'yellow'
         console.log('YES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         setTimeout(() => {
             next()
