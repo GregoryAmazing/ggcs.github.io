@@ -11,7 +11,7 @@
         #eq{
             margin: auto;
             margin-top: 1em;
-            width: min-content;
+            width: max-content;
             padding: 0.5em;
             font-size: 100px;
             text-align: center;
@@ -41,6 +41,12 @@
             float: right;
             margin-right: 4em;
         }
+        #submit{
+            display: inline;
+            padding-left: 0.2em;
+            font-size: 100px;
+            width: 4em;
+        }
         
     </style>
 
@@ -49,7 +55,7 @@
 <body>
     <span id="ecounttxt">Right answers: </span><span id="ecount">0</span>
     <div id="eq">
-        <span id="term1"></span><span>+</span><span id="term2"></span><span>=</span><input type="number" id="input">
+        <span id="term1"></span><span>+</span><span id="term2"></span><span>=</span><input type="number" id="input"><button id="submit" onclick="checkAns()">Submit</button>
     </div>
     <img src="wait.jpg" id="cat">
 </body>
