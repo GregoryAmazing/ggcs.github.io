@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Photoshop</title>
+    <script src="https://cdn.rawgit.com/konvajs/konva/2.2.2/konva.min.js" defer></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #F0F0F0;
+    }
+    #controls {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    </style>
+    <div id="container"></div>
+    <div id="controls">
+        hue:
+        <input id="hue" type="range" min="0" max="259" step="1" value="150"> saturation:
+        <input id="saturation" type="range" min="-2" max="10" step="0.5" value="0"> luminance:
+        <input id="luminance" type="range" min="-2" max="2" step="0.1" value="0">
+        <input type="text" id="text" onchange="setPathText(shape,this.value)" placeholder="type here and press enter">
+        <p>Hey! Press [Space] to rotate, press [X] to stop and click on the text to drag it!</p>
+    </div>
+</body>
+</html>
