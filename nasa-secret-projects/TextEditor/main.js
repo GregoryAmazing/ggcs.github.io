@@ -23,7 +23,11 @@ var shape = new Konva.Text({
   fontSize: 69,
   fontFamily: 'Calibri',
   text: curText,
-  draggable: true
+  draggable: true,
+  shadowColor: 'black',
+  shadowBlur: 10,
+  shadowOffset: {x : 5, y : 5},
+  shadowOpacity: 0.5
 });
 
 shape.cache();
