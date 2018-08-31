@@ -86,3 +86,20 @@ sliders.forEach(function (attr) {
   slider.oninput = update;
   update();
 });
+
+var images = []
+
+
+var imageObj = new Image();
+imageObj.src = 'https://pbs.twimg.com/profile_images/721083304666116096/r_dZuCa-_400x400.jpg'
+
+var cool = new Konva.Image({
+  x: 400,
+  y: 100,
+  image: imageObj,
+  draggable: true,
+  width: imageObj.w,
+  height: imageObj.h
+})
+
+layer.add(cool)

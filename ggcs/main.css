@@ -101,10 +101,13 @@
 
 .game:hover{
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.22);
-    transform: scaleY(1.1);
 }
 
-
+#amazinggame{
+    margin-left: 0;
+    width: 400px;
+    background-image: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) ), url("img/amazingGame.png");
+}
 
 a:link {
     color: white;
