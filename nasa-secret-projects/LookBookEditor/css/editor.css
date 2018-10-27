@@ -1,0 +1,116 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+canvas{
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.sidenav {
+    text-align: center;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    white-space: nowrap;
+    transition: 0.5s;
+    padding-top: 10px;
+}
+.sidenav a {
+    padding-top: 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.canvasBtn{
+    position: fixed;
+    z-index: 1;
+    margin: 20px;
+    width: min-content;
+    font-size:30px;
+    cursor:pointer;
+    white-space: nowrap;
+}
+
+#editorBox{
+    text-align: center;
+    height: 100%;
+    width: 60px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    white-space: nowrap;
+    transition: 0.5s;
+    padding-top: 10px;
+}
+
+.editorBtn{
+    display: block;
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.sidenav h1 {
+    text-decoration: none;
+    color: #ebebeb;
+    display: block;
+    transition: 0.3s;
+    cursor:default;
+}
+.sidenav a:hover {
+    color: #dfdfdf;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.sidenav .closebtn:hover {
+    transform: scale(1.1);
+}
+
+#duplicate{
+    top: 0;
+    right: 0;
+}
+
+#openNav{
+    top: 0;
+    left: 0;
+}
+.imgLibElement{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin-bottom: 15px;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.imgLibElement img{
+    height: 150px;
+    
+}
+#imgLibBox{
+    display: flex;
+    flex-wrap: wrap;
+}
