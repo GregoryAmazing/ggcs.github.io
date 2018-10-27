@@ -47,7 +47,7 @@ function setNormality(obj) {
     obj.set({
         borderColor: 'black',
         cornerColor: 'balck',
-        cornerSize: 15,
+        cornerSize: 50,
         cornerStyle: 'circle',
         centeredRotation: true,
     });
@@ -62,7 +62,7 @@ function setNormality(obj) {
 function addImg(name) {
     fabric.Image.fromURL(name, function(oImg) {
         // scale image down, and flip it, before adding it onto canvas
-        oImg.scale(0.3)
+        oImg.scale(0.5)
         oImg.set({
             left: window.innerWidth/2,
             top: window.innerHeight/2,
