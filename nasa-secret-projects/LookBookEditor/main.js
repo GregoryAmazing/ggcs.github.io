@@ -47,7 +47,7 @@ function setNormality(obj) {
     obj.set({
         borderColor: 'black',
         cornerColor: 'balck',
-        cornerSize: 50,
+        cornerSize: 45,
         cornerStyle: 'circle',
         centeredRotation: true,
     });
