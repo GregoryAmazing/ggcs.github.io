@@ -258,6 +258,6 @@ function save() {
     // let img = canvasHtml.toDataURL('image/jpeg', 1.0);
     // console.log(imgData);
     // console.log(img);
-    Canvas2Image.saveAsPNG(canvasHtml, 100, 100)
+    Canvas2Image.saveAsJPEG(canvasHtml, 2000, 2000)
     
 }
