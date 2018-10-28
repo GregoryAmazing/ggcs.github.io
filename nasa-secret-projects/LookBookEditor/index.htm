@@ -23,8 +23,9 @@
     
   </div>
 
-  <span class="canvasBtn" id="openNav" onclick="openNav()"><img src="icons/menu.png" style="width: 45px"></span>
+  
   <div id="editorBox">
+        <span class="editorBtn" id="openNav" onclick="openNav()"><img src="icons/menu.png" style="width: 40px"></span>
   <span class="editorBtn" id="duplicate" onclick="duplObj()" title="Дублировать"><img src="icons/dupl.png" style="width: 40px"></span>
   <span class="editorBtn" id="mirrorVert" onclick="mirrorObj('vert')" title="Вертикально отразить"><img src="icons/mirrorVert.png" style="width: 40px"></span>
   <span class="editorBtn" id="mirrorHoriz" onclick="mirrorObj('horiz')" title="Горизонтально отразить"><img src="icons/mirrorHoriz.png" style="width: 40px"></span>
@@ -35,13 +36,11 @@
 
   <script>
     function openNav() {
-        document.getElementById("mySidenav").style.width = "35%";
-        document.getElementById("openNav").style.display = "none";
+        document.getElementById("mySidenav").style.width = "100%";
     }
     
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("openNav").style.display = "block";
     }
   </script>
     
