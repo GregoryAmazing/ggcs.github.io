@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LookBook</title>
     <script src="jquery-3.3.1.min.js"></script>
+    <script src="canvas2img.js" defer></script>
     <script src="fabric.min.js" defer></script>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="css/editor.css">
@@ -33,6 +34,9 @@
   <span class="editorBtn" id="layerDown" onclick="moverLayer('down')" title="Опустить вниз"><img src="icons/layerDown.png" style="width: 40px"></span>
   <span class="editorBtn" id="delete" onclick="save();" title="Удалить"><img src="icons/delete.png" style="width: 40px"></span>
   </div>
+
+    <input type="text" id="title" placeholder="Title">
+    <button id="downldBtn"><a id="imgD" download="New-drawing">Download</a></button>
 
   <script>
     function openNav() {

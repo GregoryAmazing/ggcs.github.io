@@ -254,10 +254,10 @@ border.selectable = false;
 
 
 function save() {
-    let imgData = ctx.getImageData(0, 0, 50, 50);
-    let img = canvasHtml.toDataURL('image/jpeg', 1.0);
-    console.log(imgData);
-    console.log(img);
+    // let imgData = ctx.getImageData(0, 0, 50, 50);
+    // let img = canvasHtml.toDataURL('image/jpeg', 1.0);
+    // console.log(imgData);
+    // console.log(img);
+    Canvas2Image.saveAsPNG(canvasHtml, 100, 100)
     
 }
-console.log();
