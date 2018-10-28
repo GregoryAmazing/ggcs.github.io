@@ -29,8 +29,8 @@ var border = new fabric.Rect({
 //canvas.add(border)
 
 function updateCanvasSize(type = "full") {
-    let height = window.innerHeight-5;
-    let width = window.innerWidth-5;
+    let height = window.innerHeight;
+    let width = window.innerWidth;
     if(type == "sqr")
         canvas.setDimensions({width: height, height: height});
     else if(type == "full") 
@@ -258,6 +258,6 @@ function save() {
     // let img = canvasHtml.toDataURL('image/jpeg', 1.0);
     // console.log(imgData);
     // console.log(img);
-    Canvas2Image.saveAsJPEG(canvasHtml, 2000, 2000)
+    Canvas2Image.saveAsJPEG(canvasHtml, window.innerWidth, window.innerHeight)
     
 }
