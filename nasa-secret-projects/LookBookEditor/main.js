@@ -258,6 +258,11 @@ function save() {
     // let img = canvasHtml.toDataURL('image/jpeg', 1.0);
     // console.log(imgData);
     // console.log(img);
-    Canvas2Image.saveAsJPEG(canvasHtml, window.innerWidth, window.innerHeight)
+    if(window.innerWidth > window.innerHeight)
+        Canvas2Image.saveAsJPEG(canvasHtml, window.innerHeight, window.innerHeight)
+    else if(window.innerWidth < window.innerHeight)
+        Canvas2Image.saveAsJPEG(canvasHtml, window.innerWidth, window.innerWidth)
+    else if(window.innerWidth = window.innerHeight)
+        Canvas2Image.saveAsJPEG(canvasHtml, window.innerWidth, window.innerHeight)
     
 }
