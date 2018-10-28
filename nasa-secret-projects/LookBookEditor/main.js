@@ -257,6 +257,7 @@ function save() {
     let imgData = ctx.getImageData(0, 0, 50, 50);
     let img = canvasHtml.toDataURL('image/jpeg', 1.0);
     console.log(imgData);
+    console.log(img);
     
 }
 console.log();
