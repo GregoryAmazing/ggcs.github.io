@@ -44,14 +44,16 @@ canvas{
 
 #editorBox{
     text-align: center;
-    height: 100%;
-    width: 60px;
+    height: 60px;
+    width: min-content;
     position: fixed;
     z-index: 1;
     top: 0;
     right: 0;
-    overflow-x: hidden;
     white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
     transition: 0.5s;
     padding-top: 10px;
 }
@@ -60,7 +62,7 @@ canvas{
     display: block;
     width: 45px;
     height: 45px;
-    margin: auto;
+    margin: 10px;
     margin-bottom: 15px;
     cursor: pointer;
 }
