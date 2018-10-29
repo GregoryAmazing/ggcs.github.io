@@ -48,26 +48,24 @@ canvas{
 
 #editorBox{
     text-align: center;
-    height: 60px;
+    height: 100px;
     width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
-    right: 0;
+    left: 0;
     white-space: nowrap;
     display: flex;
     flex-wrap: wrap;
-    flex-flow: row;
     transition: 0.5s;
-    padding-top: 10px;
 }
 
 .editorBtn{
     display: block;
     width: 45px;
     height: 45px;
-    margin: 10px;
-    margin-bottom: 15px;
+    margin: 5px;
+    margin-bottom: 0;
     cursor: pointer;
 }
 

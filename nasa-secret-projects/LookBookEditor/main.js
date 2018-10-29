@@ -15,12 +15,12 @@ fabric.Group.prototype._controlsVisibility = {
     mtr: true
 };
 var border = new fabric.Rect({
-    left: window.innerWidth/2,
+    left: window.innerWidth / 2,
     top: 0,
     originX: 'center',
     originY: 'top',
     width: window.innerHeight,
-    height: window.innerHeight-8,
+    height: window.innerHeight - 8,
     fill: 'rgba(0,0,0,0)',
     strokeDashArray: [10, 5],
     stroke: 'red',
@@ -31,12 +31,12 @@ var border = new fabric.Rect({
 function updateCanvasSize(type = "full") {
     let height = window.innerHeight;
     let width = window.innerWidth;
-    if(type == "sqr")
-        canvas.setDimensions({width: height, height: height});
-    else if(type == "full") 
-        canvas.setDimensions({width: width, height: height});
+    if (type == "sqr")
+        canvas.setDimensions({ width: height, height: height });
+    else if (type == "full")
+        canvas.setDimensions({ width: width, height: height });
     else
-        console.log("!- Canvas size type of "+type+" is not defined");
+        console.log("!- Canvas size type of " + type + " is not defined");
     //updateBorder()
 }
 
@@ -52,20 +52,20 @@ function setNormality(obj) {
         centeredRotation: true,
     });
 
-    obj.setControlVisible("mr",false)
-    obj.setControlVisible("ml",false)
-    obj.setControlVisible("mt",false)
-    obj.setControlVisible("mb",false)
+    obj.setControlVisible("mr", false)
+    obj.setControlVisible("ml", false)
+    obj.setControlVisible("mt", false)
+    obj.setControlVisible("mb", false)
 }
 
 
 function addImg(name) {
-    fabric.Image.fromURL(name, function(oImg) {
+    fabric.Image.fromURL(name, function (oImg) {
         // scale image down, and flip it, before adding it onto canvas
-        oImg.scale(0.5)
+        oImg.scale(0.3)
         oImg.set({
-            left: window.innerWidth/2,
-            top: window.innerHeight/2,
+            left: window.innerWidth / 2,
+            top: window.innerHeight / 2,
             originX: 'center',
             originY: 'center',
         })
@@ -76,14 +76,14 @@ function addImg(name) {
 }
 
 var mainImgs =
-{
-    path: "images/",
-    number: 3
-}
+    {
+        path: "images/",
+        number: 3
+    }
 
 function initMainImgs() {
     for (let i = 1; i <= mainImgs.number; i++) {
-        curImg = mainImgs.path+i+".png"
+        curImg = mainImgs.path + i + ".png"
         console.log(curImg);
         addImg(curImg)
     }
@@ -91,35 +91,31 @@ function initMainImgs() {
 
 var selectedObj = canvas.getActiveObject()
 
-document.addEventListener("mousewheel", e =>{
-    let dir = Math.sign( e.deltaY );
+document.addEventListener("mousewheel", e => {
+    let dir = Math.sign(e.deltaY);
     //console.log(canvas.getActiveObject().scaleX+(0.05*dir));
-    
+
     //canvas.getActiveObject().scale(parseFloat(  canvas.getActiveObject().scaleX+(0.05*dir)  ))
     //canvas.renderAll();
-    
+
 })
 
-document.addEventListener("keydown", e =>{
+document.addEventListener("keydown", e => {
     console.log(e.keyCode);
-    
-    if(e.keyCode == 49)
-    {
+
+    if (e.keyCode == 49) {
         canvas.getActiveObject().set('flipX', !canvas.getActiveObject().flipX);
         canvas.renderAll();
     }
-    if(e.keyCode == 50)
-    {
+    if (e.keyCode == 50) {
         canvas.getActiveObject().set('flipY', !canvas.getActiveObject().flipY);
         canvas.renderAll();
     }
-    if(e.keyCode == 40)
-    {
+    if (e.keyCode == 40) {
         canvas.sendBackwards(canvas.getActiveObject())
         canvas.renderAll();
     }
-    if(e.keyCode == 38)
-    {
+    if (e.keyCode == 38) {
         canvas.bringForward(canvas.getActiveObject())
         canvas.renderAll();
     }
@@ -135,21 +131,21 @@ var libBox = document.getElementById("imgLibBox")
 
 function fillLib() {
     for (let i = 1; i <= mainImgs.number; i++) {
-        curImg = mainImgs.path+i+".png"
-        libBox.innerHTML += `<div class="imgLibElement" onclick="addImg('`+curImg+`'); closeNav()"><img src="`+curImg+`" alt=""></div>`;
+        curImg = mainImgs.path + i + ".png"
+        libBox.innerHTML += `<div class="imgLibElement" onclick="addImg('` + curImg + `'); closeNav()"><img src="` + curImg + `" alt=""></div>`;
     }
 }
 fillLib()
 
 function duplObj() {
-    if(canvas.getActiveObjects().length == 0)
+    if (canvas.getActiveObjects().length == 0)
         alert("Выделите те объекты, котроые хотите дублировать!")
-    else if(canvas.getActiveObjects().length == 1){
+    else if (canvas.getActiveObjects().length == 1) {
         canvas.getActiveObject().clone(function (o) {
             var vobj = o;
             if (vobj) {
-                let lastElem = canvas.size()-1;
-                vobj.left-=30
+                let lastElem = canvas.size() - 1;
+                vobj.left -= 30
                 canvas.setActiveObject(vobj);
 
                 setNormality(vobj)
@@ -160,53 +156,48 @@ function duplObj() {
                 alert("Sorry Object Not Initialized");
             }
         })
-    } 
-    else if(canvas.getActiveObjects().length > 1)
+    }
+    else if (canvas.getActiveObjects().length > 1)
         alert("Вы можете копировать только один объект!")
     else
         alert("Что-то пошло не так...")
 };
 
 function mirrorObj(type) {
-    if(type=="vert")
-    {
+    if (type == "vert") {
         canvas.getActiveObject().set('flipX', !canvas.getActiveObject().flipX);
         canvas.renderAll();
     }
-    else if(type=="horiz")
-    {
+    else if (type == "horiz") {
         canvas.getActiveObject().set('flipY', !canvas.getActiveObject().flipY);
         canvas.renderAll();
     }
     else
-        console.log("!-Can't mirror an object with type",type);
+        console.log("!-Can't mirror an object with type", type);
 }
 
 function moverLayer(type) {
-    if(type=="down")
-    {
+    if (type == "down") {
         canvas.sendBackwards(canvas.getActiveObject())
         canvas.renderAll();
     }
-    else if(type=="up")
-    {
+    else if (type == "up") {
         canvas.bringForward(canvas.getActiveObject())
         canvas.renderAll();
     }
     else
-        console.log("!-Can't move an to layer with type",type);
+        console.log("!-Can't move an to layer with type", type);
 }
 
-function delObj()
-{
-    if(canvas.getActiveObjects().length == 0)
+function delObj() {
+    if (canvas.getActiveObjects().length == 0)
         alert("Выделите те объекты, котроые хотите удалить!")
-    else if(canvas.getActiveObjects().length == 1){
+    else if (canvas.getActiveObjects().length == 1) {
         var conf = confirm("Вы точно хотите удалить этот объект?");
         if (conf == true)
             canvas.remove(canvas.getActiveObject());
     }
-    else if(canvas.getActiveObjects().length > 1){
+    else if (canvas.getActiveObjects().length > 1) {
         var conf = confirm("Вы точно хотите удалить эти объекты?");
         if (conf == true) {
             canvas.getActiveObjects().forEach(element => {
@@ -219,9 +210,9 @@ function delObj()
 
 
 function updateBorder() {
-    border.set('left', window.innerWidth/2)
+    border.set('left', window.innerWidth / 2)
     border.set('width', window.innerHeight)
-    border.set('height', window.innerHeight-8)
+    border.set('height', window.innerHeight - 8)
 }
 
 border.evented = false;
@@ -258,11 +249,11 @@ function save() {
     // let img = canvasHtml.toDataURL('image/jpeg', 1.0);
     // console.log(imgData);
     // console.log(img);
-    if(window.innerWidth > window.innerHeight)
+    if (window.innerWidth > window.innerHeight)
         Canvas2Image.saveAsJPEG(canvasHtml, window.innerHeight, window.innerHeight)
-    else if(window.innerWidth < window.innerHeight)
+    else if (window.innerWidth < window.innerHeight)
         Canvas2Image.saveAsJPEG(canvasHtml, window.innerWidth, window.innerWidth)
-    else if(window.innerWidth = window.innerHeight)
+    else if (window.innerWidth = window.innerHeight)
         Canvas2Image.saveAsJPEG(canvasHtml, window.innerWidth, window.innerHeight)
-    
+
 }
