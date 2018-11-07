@@ -95,6 +95,7 @@ canvas{
     width: 150px;
     height: 150px;
     margin: auto;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 .imgLibElement img{

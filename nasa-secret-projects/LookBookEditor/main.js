@@ -78,7 +78,8 @@ function addImg(name) {
 var mainImgs =
     {
         path: "images/",
-        number: 3
+        number: 3,
+        wantedNumber: 30
     }
 
 function initMainImgs() {
@@ -130,9 +131,15 @@ document.addEventListener("keydown", e => {
 var libBox = document.getElementById("imgLibBox")
 
 function fillLib() {
+    var T = 0;
     for (let i = 1; i <= mainImgs.number; i++) {
+        T++;
         curImg = mainImgs.path + i + ".png"
         libBox.innerHTML += `<div class="imgLibElement" onclick="addImg('` + curImg + `'); closeNav()"><img src="` + curImg + `" alt=""></div>`;
+        if(i == mainImgs.number && !(T >= mainImgs.wantedNumber))
+        {
+            i = 0
+        }
     }
 }
 fillLib()
