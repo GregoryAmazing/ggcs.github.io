@@ -75,7 +75,7 @@ function addNop() {
     }
 }
 
-function gttpR()
+function gttpRz()
 {
     //sending to god over gttp reqest
     var prayerEntered = document.getElementById("prayerArea").value;
