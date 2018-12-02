@@ -77,8 +77,10 @@ function addNop() {
 
 function gttpR()
 {
+    //sending to god over gttp reqest
     var prayerEntered = document.getElementById("prayerArea").value;
     prayers.push({
         msg: prayerEntered
     })
+    document.getElementById("prayerArea").value = ''
 }
