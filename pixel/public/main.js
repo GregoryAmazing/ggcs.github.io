@@ -159,10 +159,11 @@ console.log("Verion 2");
 
 
 function connectB(boardId="") {
-
+    
 if(boardId != "")
 {
-    dataRef("name",boardId).on('value', function (snapshot) {
+    dataRef("name",boardId).off()
+    dataRef("name",boardId).once('value', function (snapshot) {
         
         if (snapshot.val() != null) {
             document.getElementById("Name").innerText = snapshot.val()
@@ -172,7 +173,7 @@ if(boardId != "")
         }
     });
 
-    dataRef("cells",boardId).on('value', function (snapshot) {
+    dataRef("cells",boardId).once('value', function (snapshot) {
         if (snapshot.val() != null) {
             //console.log("cells exist!");
             //console.log(snapshot.val());
