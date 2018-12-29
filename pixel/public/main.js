@@ -155,16 +155,13 @@ function invDisp(elemId) {
 
 var BID = ""
 
+console.log("Verion 2");
+
+
 function connectB(boardId="") {
 
 if(boardId != "")
 {
-    if (dataRef("name",boardId) != undefined) {
-        console.log("Baord Exists!");
-    } else {
-        console.log("Baord does not Exist...");
-        return;
-    }
     dataRef("name",boardId).on('value', function (snapshot) {
         
         if (snapshot.val() != null) {
