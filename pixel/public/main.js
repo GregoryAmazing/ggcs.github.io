@@ -138,6 +138,8 @@ function existsCallBack(id, exists) {
 }
 
 function connectionTry(id) {
+    dataRef("name",BID).off()
+    dataRef("cells",BID).off()
     firebase.database().ref('pixelBoards').child(id).once('value', function(snapshot) {
       var exists = (snapshot.val() !== null);
       existsCallBack(id, exists);
@@ -162,8 +164,7 @@ function connectB(boardId="") {
     
 if(boardId != "")
 {
-    dataRef("name",boardId).off()
-    dataRef("name",boardId).once('value', function (snapshot) {
+    dataRef("name",boardId).on('value', function (snapshot) {
         
         if (snapshot.val() != null) {
             document.getElementById("Name").innerText = snapshot.val()
@@ -173,7 +174,7 @@ if(boardId != "")
         }
     });
 
-    dataRef("cells",boardId).once('value', function (snapshot) {
+    dataRef("cells",boardId).on('value', function (snapshot) {
         if (snapshot.val() != null) {
             //console.log("cells exist!");
             //console.log(snapshot.val());
@@ -188,9 +189,6 @@ if(boardId != "")
     });
 }
 }
-
-connectB("")
-
 
 function deploy() {
     if(databaseloaded)
