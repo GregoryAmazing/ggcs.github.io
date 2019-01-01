@@ -1,205 +1,205 @@
 <html lang="en">
 
 <head>
-  <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
-  <script language="javascript" type="text/javascript" src="js/firebaseMain.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <title>NCPP</title>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script language="javascript" type="text/javascript" src="js/firebaseMain.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <title>NCPP</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-    }
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+        }
+    
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+        
+    </style>
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-  <!-- Custom styles for this template -->
-  <link href="css/album.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/logoIcon.png">
+    <!-- Custom styles for this template -->
+    <link href="css/album.css" rel="stylesheet">
 
-  <style type="text/css">
-    @font-face {
-      font-weight: 400;
-      font-style: normal;
-      font-family: 'Inter-Loom';
+    <style type="text/css">
+        @font-face {
+            font-weight: 400;
+            font-style: normal;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Regular.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Regular.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 400;
-      font-style: italic;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 400;
+            font-style: italic;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Italic.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Italic.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 500;
-      font-style: normal;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 500;
+            font-style: normal;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Medium.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Medium.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 500;
-      font-style: italic;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 500;
+            font-style: italic;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-MediumItalic.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-MediumItalic.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 700;
-      font-style: normal;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 700;
+            font-style: normal;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Bold.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Bold.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 700;
-      font-style: italic;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 700;
+            font-style: italic;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-BoldItalic.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-BoldItalic.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 900;
-      font-style: normal;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 900;
+            font-style: normal;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Black.woff2') format('woff2');
-    }
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Black.woff2') format('woff2');
+        }
 
-    @font-face {
-      font-weight: 900;
-      font-style: italic;
-      font-family: 'Inter-Loom';
+        @font-face {
+            font-weight: 900;
+            font-style: italic;
+            font-family: 'Inter-Loom';
 
-      src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-BlackItalic.woff2') format('woff2');
-    }
-  </style>
+            src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-BlackItalic.woff2') format('woff2');
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <div class="bg-dark collapse" id="navbarHeader">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">About</h4>
-            <p class="text-muted">I obssesed with programming! So I created this website to post my work online for
-              everyone to see. So i guess this qualifies as a portfolio. Please note that everything I make is
-              open-sorce. So feel free to dive in to my code.</p>
-          </div>
-          <div class="col-sm-4 offset-md-1 py-4">
-            <h4 class="text-white">Contact</h4>
-            <ul class="list-unstyled">
-              <li><a href="https://vk.com/greggyboi" target="_blank" class="text-white">Follow me on VK</a></li>
-              <li><a href="https://github.com/romanovsky-g" target="_blank" class="text-white">Check out my GitHub</a></li>
-            </ul>
-          </div>
+    <header>
+        <div class="bg-dark collapse" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-white">About</h4>
+                        <p class="text-muted">I obssesed with programming! So I created this website to post my work
+                            online for everyone to see. So i guess this qualifies as a portfolio. Please note that
+                            everything I make is open-sorce. So feel free to dive in to my code.</p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <h4 class="text-white">Contact</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://vk.com/greggyboi" target="_blank" class="text-white">Follow me on VK</a></li>
+                            <li><a href="https://github.com/romanovsky-g" target="_blank" class="text-white">Check out
+                                    my GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <strong><i class="fas fa-code"></i> NCPP</strong>
-        </a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader"
-          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong><i class="fas fa-code"></i> NCPP</strong>
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-  <main role="main">
+    <main role="main">
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Nerd's Creative Programming Projects</h1>
-        <p class="lead text-muted">A website for sharing my passion for code with the entire world.<p>
-            <button class="btn btn-primary my-2" onclick="randomPage()">Go to random page!</button>
-          </p>
-      </div>
-    </section>
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Nerd's Creative Programming Projects</h1>
+                <p class="lead text-muted">A website for sharing my passion for code with the entire world.
+                    <p>
+                        <button class="btn btn-primary my-2" onclick="randomPage()">Go to a random page!</button>
+                    </p>
+            </div>
+        </section>
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status" id="spinner"></div>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status" id="spinner"></div>
+                </div>
+                <div class="row" id="posts"></div>
+            </div>
         </div>
 
-        <div class="row" id="posts">
+    </main>
 
-
-
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>© NCPP</p>
         </div>
+    </footer>
 
-      </div>
-    </div>
-
-  </main>
-
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Back to top</a>
-      </p>
-      <p>© NCPP</p>
-    </div>
-  </footer>
-
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 
-  <script>window.jQuery || document.write('<script src="js/bootstrap.min.js"><\/script>')</script>
+    <script>
+        window.jQuery || document.write('<script src="js/bootstrap.min.js"><\/script>')
+    </script>
 
-  <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    let linksArray = []
+    <script>
+        let linksArray = []
 
-    window.onload = function () {
-      posts.on('child_added', snap => {
-        let title = get('title', snap)
-        let discription = get('discription', snap)
-        let link = get('link', snap)
-        let imageURL = get('imageURL', snap)
-        let spinnerDisp = $("#spinner")[0].style.display
+        window.onload = function () {
+            posts.on('child_added', snap => {
+                let title = get('title', snap)
+                let discription = get('discription', snap)
+                let link = get('link', snap)
+                let imageURL = get('imageURL', snap)
+                let spinnerDisp = $("#spinner")[0].style.display
 
-        let html = `<div class="col-md-4"><div class="card mb-4 shadow-sm"><div class="thumbNail" style="background-image: url(` + imageURL + `);"></div><div class="card-body"><strong>` + title + `</strong><p class="card-text">` + discription + `</p><div class="d-flex justify-content-between align-items-center"><a href="` + link + `" class="btn btn-dark" target="_blank">View</a></div></div></div></div>`;
-        $("#posts")[0].innerHTML += html
+                let html = `<div class="col-md-4"><div class="card mb-4 shadow-sm"><div class="thumbNail" style="background-image: url(` + imageURL + `);"></div><div class="card-body"><strong>` + title + `</strong><p class="card-text">` + discription + `</p><div class="d-flex justify-content-between align-items-center"><a href="` + link + `" class="btn btn-dark" target="_blank">View</a></div></div></div></div>`;
+                $("#posts")[0].innerHTML += html
 
-        if(spinnerDisp != "none")
-        {
-          $("#spinner")[0].style.display = "none"
+                if (spinnerDisp != "none") {
+                    $("#spinner")[0].style.display = "none"
+                }
+
+                linksArray.push(link)
+            })
         }
 
-        linksArray.push(link)
-      })
-    }
-
-    function randomPage() {
-      if (linksArray.length > 0)
-        window.open(linksArray[Math.floor(Math.random() * linksArray.length)], '_blank');
-    }
-  </script>
+        function randomPage() {
+            if (linksArray.length > 0)
+                window.open(linksArray[Math.floor(Math.random() * linksArray.length)], '_blank');
+        }
+    </script>
 
 
 </body>
