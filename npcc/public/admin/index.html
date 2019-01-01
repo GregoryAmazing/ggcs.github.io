@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/album.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script src="../js/firebaseMain.js"></script>
+    <script src="../js/main.js"></script>
+    <style>
+    body{
+        background-color: rgb(238, 238, 238)
+    }
+    </style>
+    <title>Admin</title>
+</head>
+
+<body>
+    
+    <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;" id="loginMenu">
+        <div class="loginmodal-container">
+            <h1>Login to Your Account</h1><br>
+            <form>
+                <input type="text" id="user" placeholder="Username">
+                <input type="password" id="pass" placeholder="Password">
+                <button type="button" class="btn btn-primary" id="loginBtn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;" id="postMenu">
+            <div style="width: 23rem">
+                <div class="card mb-4 shadow-sm">
+                    <div class="thumbNail container" style="display: flex; justify-content: center; align-items: center; background: rgb(104, 104, 104)"><input type="text" class="form-control" id="imgIn" placeholder="Image file name"></div>
+                    <div class="card-body">
+                        <input type="text" class="form-control" id="titleIn" placeholder="Title" style="margin-bottom: .5rem;">
+                        <textarea class="form-control" id="dscrptIn" rows="3" placeholder="Discription" style="margin-bottom: .5rem;"></textarea>
+                        <input type="text" class="form-control" id="linkIn" placeholder="Link" style="margin-bottom: .5rem;">
+                        <button type="button" class="btn btn-primary" id="publish">Publish</button>
+                        
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+    <script>
+        let pass = $('#pass')[0];
+        let user = $('#user')[0];
+        let loginBtn = $('#loginBtn')[0];
+        let loginMenu = $('#loginMenu')[0];
+        let postMenu = $('#postMenu')[0];
+
+        loginBtn.onclick = e => {
+            auth(user.value, pass.value)
+            loginMenu.style.display = "none"
+        }
+
+        function domSet(state) {
+            if (state == 'logedin') {
+                loginMenu.style.display = "none"
+                postMenu.style.display = "flex"
+            }
+            else {
+                loginMenu.style.display = "flex"
+                postMenu.style.display = "none"
+            }
+        }
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                domSet("logedin")
+            } else {
+                domSet("logedout")
+            }
+        });
+
+        function jq(id){
+            return $('#'+id)[0].value;
+        }
+        
+        $('#publish')[0].onclick = e=>{
+            let title = jq('titleIn')
+            let discription = jq('dscrptIn')
+            let link = jq('linkIn')
+            let imageURL = jq('imgIn')
+            addPost(title,discription,link,imageURL)
+        }
+
+
+    </script>
+</body>
+
+</html>
