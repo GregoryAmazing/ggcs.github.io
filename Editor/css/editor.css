@@ -1,0 +1,202 @@
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+
+body{
+    margin: 0;
+    overflow: hidden
+}
+canvas{
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(240, 240, 240, 1);
+    overflow-x: hidden;
+    white-space: nowrap;
+    transition: 0.3s;
+    padding-top: 10px;
+}
+
+.sidenav a:hover {
+    cursor: pointer;
+}
+
+.canvasBtn{
+    position: fixed;
+    z-index: 1;
+    margin: 20px;
+    width: min-content;
+    font-size:30px;
+    cursor:pointer;
+    white-space: nowrap;
+}
+
+#creds{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0.5em;
+}
+
+#editorPanel{
+    position: absolute;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: #131313 solid;
+    border-top: none;
+}
+
+#editorBox{
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.editorBtn{
+    display: block;
+    width: 45px;
+    height: 45px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.sidenav h1 {
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #303030;
+    display: block;
+    transition: 0.3s;
+    cursor:default;
+}
+
+.sidenav .closebtn {
+
+    right: 0;
+    height: 40px;
+    float: right;
+    margin: 10px;
+}
+.closebtn:hover{
+    cursor: pointer;
+}
+
+#duplicate{
+    top: 0;
+    right: 0;
+}
+
+.imgLibElement{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.imgLibElement img{
+    height: 150px;
+    
+}
+#imgLibBox{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+#colorBox{
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column-reverse;
+
+    transition: 0.5s;
+}
+
+.colorBoxElement{
+    height: 50px;
+    width: 50px;
+    background-color: rgb(255, 0, 242);
+    border-radius: 50%;
+    border: 3px solid #131313;
+    display: inline-block;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+  .lds-facebook {
+    display: none;
+    width: 64px;
+    height: 64px;
+
+    position:absolute;
+    z-index: 1;
+    left:0; right:0;
+    top:0; bottom:0;
+	margin:auto;
+	
+	max-width:100%;
+	max-height:100%;
+	overflow:auto;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 13px;
+    background: #131313;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 6px;
+      height: 51px;
+    }
+    50%, 100% {
+      top: 19px;
+      height: 26px;
+    }
+  }
+  
