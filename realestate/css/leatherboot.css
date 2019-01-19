@@ -1,0 +1,91 @@
+.div-lt{
+    display: flex;
+    justify-content: center;
+    margin: 3rem;
+}
+
+.cent-c{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.fab {
+    display: inline;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    color: white;
+}
+
+.fab:hover {
+    opacity: 0.5;
+    color: white;
+    text-decoration: none;
+}
+
+@font-face {
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 400;
+    font-style: italic;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Italic.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 500;
+    font-style: normal;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 500;
+    font-style: italic;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-MediumItalic.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 700;
+    font-style: italic;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-BoldItalic.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 900;
+    font-style: normal;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-Black.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 900;
+    font-style: italic;
+    font-family: 'Inter-Loom';
+
+    src: url('https://cdn.useloom.com/assets/fonts/inter/Inter-UI-BlackItalic.woff2') format('woff2');
+}
