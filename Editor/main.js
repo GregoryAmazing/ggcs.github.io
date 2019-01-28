@@ -115,11 +115,9 @@ function setAsBackground() {
         alert("Выделите тот объект, котроый хотите поставить как фоновое изображение!")
     else if (canvas.getActiveObjects().length == 1) {
         self = this;
-        if (canvasImage) {
-            this.canvas.setBackgroundColor({ source: canvas.getActiveObject().getSrc() }, function () {
-                self.canvas.renderAll();
-            })
-        }
+        this.canvas.setBackgroundColor({ source: canvas.getActiveObject().getSrc() }, function () {
+            self.canvas.renderAll();
+        })
     }
 }
 
