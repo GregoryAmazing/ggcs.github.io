@@ -1,5 +1,3 @@
-import { read } from "fs";
-
 // create a wrapper around native canvas element (with id="c")
 var canvas = new fabric.Canvas('c', { preserveObjectStacking: true })
 var canvasHtml = document.getElementById('c')
@@ -219,6 +217,7 @@ function setAsBackground() {
         canvas.renderAll();
     }
 }
+
 
 function duplObj() {
     if (canvas.getActiveObjects().length == 0)
