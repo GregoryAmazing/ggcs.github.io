@@ -1,3 +1,4 @@
+
 // create a wrapper around native canvas element (with id="c")
 var canvas = new fabric.Canvas('c', { preserveObjectStacking: true })
 var canvasHtml = document.getElementById('c')
@@ -145,6 +146,33 @@ setBGColor()
 var libBox = document.getElementById("imgLibBox")
 var colorBox = document.getElementById("colorBox")
 
+function resizedataURL(datas, wantedWidth, wantedHeight) {
+    // We create an image to receive the Data URI
+    var img = document.createElement('img');
+
+    // When the event "onload" is triggered we can resize the image.
+    img.onload = function () {
+        // We create a canvas and get its context.
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // We set the dimensions at the wanted size.
+        canvas.width = wantedWidth;
+        canvas.height = wantedHeight;
+
+        // We resize the image with the canvas method drawImage();
+        ctx.drawImage(this, 0, 0, wantedWidth, wantedHeight);
+
+        var dataURI = canvas.toDataURL();
+        addImg(dataURI)
+        /////////////////////////////////////////
+        // Use and treat your Data URI here !! //
+        /////////////////////////////////////////
+    };
+
+    // We put the Data URI in the image's src attribute
+    img.src = datas;
+}
 
 function readmultifiles(e) {
     const files = e.currentTarget.files;
@@ -152,12 +180,16 @@ function readmultifiles(e) {
         const file = files[i];
         const reader = new FileReader();
         reader.onload = (e) => {
-            //server call for uploading or reading the files one-by-one
-            //by using 'reader.result' or 'file'
-            addImg(reader.result);
-        }
-        reader.readAsDataURL(file);
-    })
+                //server call for uploading or reading the files one-by-one
+                //by using 'reader.result' or 'file'
+                var image = new Image();
+                image.src = reader.result;
+                image.onload = function () {
+                    resizedataURL(reader.result, this.width*0.1, this.height*0.1);
+                }
+            }
+            
+        })
 };
 
 var BG =
@@ -178,6 +210,14 @@ function fillColors() {
 
 fillColors()
 
+function setAsBackground(params) {
+    if (canvas.getActiveObjects().length == 0)
+        alert("Выделите тот объект, котроый хотите поставить как фоновое изображение!")
+    else if (canvas.getActiveObjects().length == 1) {
+        canvas.setBackgroundImage(canvas.getActiveObject().getSrc());
+        canvas.renderAll();
+    }
+}
 
 function duplObj() {
     if (canvas.getActiveObjects().length == 0)
