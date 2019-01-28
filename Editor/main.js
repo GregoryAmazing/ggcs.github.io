@@ -1,3 +1,4 @@
+import { read } from "fs";
 
 // create a wrapper around native canvas element (with id="c")
 var canvas = new fabric.Canvas('c', { preserveObjectStacking: true })
@@ -210,7 +211,7 @@ function fillColors() {
 
 fillColors()
 
-function setAsBackground(params) {
+function setAsBackground() {
     if (canvas.getActiveObjects().length == 0)
         alert("Выделите тот объект, котроый хотите поставить как фоновое изображение!")
     else if (canvas.getActiveObjects().length == 1) {
