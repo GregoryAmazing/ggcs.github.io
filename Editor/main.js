@@ -1,3 +1,4 @@
+
 // create a wrapper around native canvas element (with id="c")
 var canvas = new fabric.Canvas('c', { preserveObjectStacking: true })
 var canvasHtml = document.getElementById('c')
@@ -109,6 +110,15 @@ function addImg(name, tuneScale = true) {
     });
 }
 
+function setAsBackground() {
+    if (canvas.getActiveObjects().length == 0)
+        alert("Выделите тот объект, котроый хотите поставить как фоновое изображение!")
+    else if (canvas.getActiveObjects().length == 1) {
+        canvas.setBackgroundImage(canvas.getActiveObject().getSrc());
+        canvas.renderAll();
+    }
+}
+
 var selectedObj = canvas.getActiveObject()
 
 document.addEventListener("keydown", e => {
@@ -146,19 +156,18 @@ var libBox = document.getElementById("imgLibBox")
 var colorBox = document.getElementById("colorBox")
 
 
-
 function readmultifiles(e) {
     const files = e.currentTarget.files;
     Object.keys(files).forEach(i => {
         const file = files[i];
         const reader = new FileReader();
         reader.onload = (e) => {
-                //server call for uploading or reading the files one-by-one
-                //by using 'reader.result' or 'file'
-                addImg(reader.result);
-            }
-            reader.readAsDataURL(file);
-        })
+            //server call for uploading or reading the files one-by-one
+            //by using 'reader.result' or 'file'
+            addImg(reader.result);
+        }
+        reader.readAsDataURL(file);
+    })
 };
 
 var BG =
@@ -178,15 +187,6 @@ function fillColors() {
 }
 
 fillColors()
-
-function setAsBackground() {
-    if (canvas.getActiveObjects().length == 0)
-        alert("Выделите тот объект, котроый хотите поставить как фоновое изображение!")
-    else if (canvas.getActiveObjects().length == 1) {
-        canvas.setBackgroundImage(canvas.getActiveObject().getSrc());
-        canvas.renderAll();
-    }
-}
 
 
 function duplObj() {
@@ -333,24 +333,4 @@ function uploadToServer() {
         async: false,
     });
     console.log(fileName);
-}
-
-function sendMail() {
-    let href = 'http://lbschool.fotoblic.ru/LookBookEditor/user_uploads/' + fileName + '.jpg';
-    let qanda = prompt("Укажите имейл на который надо отправить фото: ", "someone@example.com")
-    if (qanda == null || qanda == "") {
-        return;
-    } else {
-        $.ajax({
-            url: 'mail.php',
-            type: 'POST',
-            success: function () { },
-            data: {
-                link: href,
-                name: qanda
-            },
-            dataType: 'json',
-            async: false,
-        });
-    }
 }
