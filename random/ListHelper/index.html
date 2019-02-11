@@ -14,6 +14,9 @@
 		var copyText2 = $("myInput2");
 
 		function listForm() {
+			for (let i = 1; i <= 20; i++) {
+				copyText2.value = copyText2.value.replace("#","*"+i+" ")				
+			}
 			copyText2.value = copyText2.value.insertAt(copyText2.value.indexOf("*"),"[list]\n")
 			copyText2.value = copyText2.value.replace(/&nbsp;/g, '').replace(/\*/g,"[*]")
 			copyText2.value = copyText2.value.insertAt(copyText2.value.length,"\n[/list]")
