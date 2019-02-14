@@ -60,6 +60,8 @@
 			border: white solid 6px;
 			margin: 2rem;
 			display: block;
+			height: 500px;
+
 		}
 		.screenbox{
 			width: 100%;
@@ -79,6 +81,11 @@
 		}
 		.btn-link:visited{
 			text-decoration: none;
+		}
+
+		.slidelem{
+			width: min-content;
+			height: min-content;
 		}
 		.creds{
 			position: absolute;
@@ -105,9 +112,9 @@
 		</div>
 
 		<div class="singleitem">
-			<div><img src="images/screen-start.jpg" alt="screen_shot" class="screenshot"></div>
-			<div><img src="images/screen-before.jpg" alt="screen_shot" class="screenshot"></div>
-			<div><img src="images/screen-after.jpg" alt="screen_shot" class="screenshot"></div>
+			<div class="slidelem"><img src="images/screen-start.jpg" alt="screen_shot" class="screenshot"></div>
+			<div class="slidelem"><img src="images/screen-before.jpg" alt="screen_shot" class="screenshot"></div>
+			<div class="slidelem"><img src="images/screen-after.jpg" alt="screen_shot" class="screenshot"></div>
 		</div>
 
 		<a href="https://drive.google.com/open?id=1J-ILuPN9JSwcsFB8lxOqdQ1bagvwxDG-" class="btn-link">
@@ -126,8 +133,7 @@
 		$(document).ready(function () {
 			$('.singleitem').slick({
 				infinite: true,
-				slidesToShow: 1,
-				slidesToScroll: 1,
+				arrows : false,
 				autoplay: true,
 				centerMode: true,
 				variableWidth: true,
