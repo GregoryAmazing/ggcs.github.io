@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Не Влюбиться</title>
+
+	<link rel="shortcut icon" href="images/APP.png" type="image/x-icon">
+
+	<link rel="stylesheet" type="text/css" href="slick/slick.css" />
+	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+
+	<style>
+		.singleitem{
+			width: 90%;
+		}
+		body{
+			background-image: url("images/BG0.png");
+			background-size: 800px;
+			image-rendering: auto;
+			image-rendering: crisp-edges;
+			image-rendering: pixelated;
+			display: flex;
+			justify-content: center;
+		}
+		.main-info{
+			display: flex;
+			flex-wrap: wrap;
+			width: 90%;
+			margin-top: 4rem;
+			justify-content: center;
+		}
+		span, .creds{
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 2rem;
+			display: block;
+		}
+		.text-r{
+			margin-top: 2rem;
+			float: right;
+			text-align: center;
+		}
+		.white-b{
+			width: 100%;
+			background-color: white;
+			padding: 2rem;
+		}
+		.head-icon{
+			color: white;
+			text-align: center;
+		}
+		.screenshot{
+			border: white solid 6px;
+			margin: 2rem;
+			display: block;
+		}
+		.screenbox{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		a{
+			color: inherit;
+		}
+		.btn-link{
+			text-decoration: none;
+			text-align: center;
+			display: flex;
+			width: 400px;
+			margin: 4rem;
+		}
+		.btn-link:visited{
+			text-decoration: none;
+		}
+		.creds{
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<a href="https://romanovsky-g.github.io/ncpp/public/" target="_blank" class="creds btn-link" style="margin:0;">NCPP</a>
+	<div class="main-info"> 
+		<div class="head-icon">
+			<span style="font-size: 3rem;">Не Влюбиться</span>
+			<img src="images/APP.png" alt="app_icon" style="border: white solid 3px; border-radius: 14%;">
+		</div>
+		<div class="text-r white-b">
+			<span>
+				Не Влюбиться - игра, в которой твоё сердце уворачивается от потэнциальных отношений и бабочек в животе. Пока ты
+				играешь, стрелы любви ускоряются и становится всё сложнее уворачиваться от них. В данный момент эта игра доступна
+				только пользователям Android. Если у вас Apple продукт, мне вас жаль.
+			</span>
+		</div>
+
+		<div class="singleitem">
+			<div><img src="images/screen-start.jpg" alt="screen_shot" class="screenshot"></div>
+			<div><img src="images/screen-before.jpg" alt="screen_shot" class="screenshot"></div>
+			<div><img src="images/screen-after.jpg" alt="screen_shot" class="screenshot"></div>
+		</div>
+
+		<a href="https://drive.google.com/open?id=1J-ILuPN9JSwcsFB8lxOqdQ1bagvwxDG-" class="btn-link">
+			<div class="white-b" style="padding:10px;">
+				<span style="font-size: 4rem;">Скачать</span>
+				<img src="images/android.png" alt="android" style="height: 50px;">
+			</div>
+		</a>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="slick/slick.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('.singleitem').slick({
+				infinite: true,
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				autoplay: true,
+				centerMode: true,
+				variableWidth: true,
+  				autoplaySpeed: 2000
+			});
+		});
+		
+	</script>
+</body>
+
+</html>

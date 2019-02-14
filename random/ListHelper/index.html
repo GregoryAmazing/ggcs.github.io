@@ -3,7 +3,7 @@
 
 <body>
 
-	<textarea id="myInput2" rows="10" cols="150"></textarea>
+	<textarea id="myInput2" rows="45" cols="200"></textarea>
 
 	<script>
 		String.prototype.insertAt=function(index, string) {
@@ -14,12 +14,22 @@
 		var copyText2 = $("myInput2");
 
 		function listForm() {
+			let boldTag;
 			for (let i = 1; i <= 20; i++) {
-				copyText2.value = copyText2.value.replace("#","*"+i+" ")				
+				if(i%2 == 0)
+					boldTag = "[/b]"
+				else
+					boldTag = "[b]"
+				copyText2.value = copyText2.value.replace("#"," "+i+" ").replace("'''", boldTag)				
 			}
-			copyText2.value = copyText2.value.insertAt(copyText2.value.indexOf("*"),"[list]\n")
-			copyText2.value = copyText2.value.replace(/&nbsp;/g, '').replace(/\*/g,"[*]")
-			copyText2.value = copyText2.value.insertAt(copyText2.value.length,"\n[/list]")
+			copyText2.value = copyText2.value.replace(/=== /g, "[h1]").replace(/ ===/g, "[/h1]").replace(/== /g, "[h1]").replace(/ ==/g, "[/h1]").replace(/<br\/>/g, "").replace(/<br>/g,'')
+
+			if(copyText2.value.indexOf("*") != -1)
+			{
+				copyText2.value = copyText2.value.insertAt(copyText2.value.indexOf("*"),"[list]\n")
+				copyText2.value = copyText2.value.replace(/&nbsp;/g, '').replace(/\*/g,"[*]")
+				copyText2.value = copyText2.value.insertAt(copyText2.value.length,"\n[/list]")
+			}
 			copyText2.select();
 			document.execCommand("copy");
 		}
