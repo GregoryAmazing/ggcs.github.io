@@ -1,6 +1,10 @@
 let squaresX = 16
 let squaresY = 16
-let squareSize = 40
+let squareSize = 0
+if(window.outerWidth >= 1000)
+    squareSize = 40
+else
+    squareSize = 20
 
 let offsetX = (window.innerWidth / 2) - (squaresX * (squareSize / 2))
 let offsetY = (window.innerHeight / 2) - (squaresY * (squareSize / 2))
@@ -138,12 +142,14 @@ function existsCallBack(id, exists) {
 }
 
 function connectionTry(id) {
+    console.log("Conection started...");
     dataRef("name",BID).off()
     dataRef("cells",BID).off()
     firebase.database().ref('pixelBoards').child(id).once('value', function(snapshot) {
       var exists = (snapshot.val() !== null);
       existsCallBack(id, exists);
     });
+    console.log("Conection ended.");
 }
 
 function invDisp(elemId) {

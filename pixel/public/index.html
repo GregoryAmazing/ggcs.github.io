@@ -1,7 +1,10 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+  <meta
+    charset="UTF-8"
+    name='viewport' 
+    content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
   <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
   <script language="javascript" src="libraries/p5.dom.js"></script>
   <script language="javascript" src="libraries/jscolor.js"></script>
@@ -71,16 +74,16 @@
   <div class="overlay">
     <div style="direction: rtl; width: min-content; float: right;">
       <p style="display: block;margin: 0; margin-right: 10px; font-size: 1.2em" id="Name">Board Name</p>
-      <button class="btn" onclick="invDisp('boardMenu')">Connect</button>
+      <button class="btn" ontouchstart="invDisp('boardMenu')" onclick="invDisp('boardMenu')">Connect</button>
     </div>
-    <button class="btn" onclick="updMode('invert')">Change Mode</button>
+    <button class="btn" ontouchstart="updMode('invert')" onclick="updMode('invert')">Change Mode</button>
     <p style="margin: 0; margin-left: 10px; font-size: 1.2em;" id="modeDisplay">Mode: pen</p>
     <button class="colorBtn jscolor {valueElement:null,value:'0083c4',onFineChange:'updateColor(this)'}" id="colorInput"></button>
   </div>
 
   <div class="centerDiv" style="display: block" id="boardMenu">
-    <div class="btn" style="display:inline-block" onclick="connectionTry('PublicBoard')">Public Board</div>
-    <input class="btn" type="text" id="idInput" placeholder="Enter Board ID"">
+    <button class="btn" style="display:inline-block" ontouchstart="connectionTry('PublicBoard')" onclick="connectionTry('PublicBoard')">Public Board</button>
+    <input class="btn" type="text" id="idInput" placeholder="Enter Board ID">
   </div>
 </body>
 
