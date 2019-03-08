@@ -1,5 +1,4 @@
 
-// create a wrapper around native canvas element (with id="c")
 var canvas = new fabric.Canvas('c', { preserveObjectStacking: true })
 var canvasHtml = document.getElementById('c')
 var ctx = canvasHtml.getContext('2d');
@@ -15,6 +14,7 @@ fabric.Group.prototype._controlsVisibility = {
     mb: false,
     mtr: true
 };
+
 var border = new fabric.Rect({
     left: window.innerWidth / 2,
     top: 0,
@@ -164,13 +164,12 @@ function readmultifiles(e) {
         const file = files[i];
         const reader = new FileReader();
         reader.onload = (e) => {
-            //server call for uploading or reading the files one-by-one
-            //by using 'reader.result' or 'file'
             addImg(reader.result);
         }
         reader.readAsDataURL(file);
     })
 };
+
 
 var BG =
 {

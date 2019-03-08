@@ -2,7 +2,10 @@
 <html lang="en" class="noselect">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta 
+     name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Editor</title>
@@ -23,15 +26,15 @@
     
     <div id="editorBox">
         <div id="editorPanel">
-            <label for="fileUpload"><span class="editorBtn" id="add" title="Добавить"><img src="icons/add.png" style="width: 40px"></span></label>
-            <span class="editorBtn" id="duplicate" onclick="duplObj()" title="Дублировать"><img src="icons/dupl.png" style="width: 40px"></span>
-            <span class="editorBtn" id="mirrorVert" onclick="mirrorObj('vert')" title="Вертикально отразить"><img src="icons/mirrorVert.png" style="width: 40px"></span>
-            <span class="editorBtn" id="mirrorHoriz" onclick="mirrorObj('horiz')" title="Горизонтально отразить"><img src="icons/mirrorHoriz.png" style="width: 40px"></span>
-            <span class="editorBtn" id="layerUp" onclick="moverLayer('up')" title="Поднять вверх"><img src="icons/layerUp.png" style="width: 40px"></span>
-            <span class="editorBtn" id="layerDown" onclick="moverLayer('down')" title="Опустить вниз"><img src="icons/layerDown.png" style="width: 40px"></span>
-            <span class="editorBtn" id="delete" onclick="delObj()" title="Удалить"><img src="icons/delete.png" style="width: 40px"></span>
-            <span class="editorBtn" id="save" onclick="save();" title="Сохранить"><img src="icons/download.png" style="width: 40px"></span>
-            <span class="editorBtn" id="fullscreen" onclick="setAsBackground()" title="фоновое изображение"><img src="icons/fullscreen.png" style="width: 40px"></span>
+            <label for="fileUpload"><span class="editorBtn" id="add" title="Добавить"><img src="icons/add.png" ></span></label>
+            <span class="editorBtn" id="duplicate" onclick="duplObj()" title="Дублировать"><img src="icons/dupl.png" ></span>
+            <span class="editorBtn" id="mirrorVert" onclick="mirrorObj('vert')" title="Вертикально отразить"><img src="icons/mirrorVert.png" ></span>
+            <span class="editorBtn" id="mirrorHoriz" onclick="mirrorObj('horiz')" title="Горизонтально отразить"><img src="icons/mirrorHoriz.png" ></span>
+            <span class="editorBtn" id="layerUp" onclick="moverLayer('up')" title="Поднять вверх"><img src="icons/layerUp.png" ></span>
+            <span class="editorBtn" id="layerDown" onclick="moverLayer('down')" title="Опустить вниз"><img src="icons/layerDown.png" ></span>
+            <span class="editorBtn" id="delete" onclick="delObj()" title="Удалить"><img src="icons/delete.png" ></span>
+            <span class="editorBtn" id="save" onclick="save();" title="Сохранить"><img src="icons/download.png" ></span>
+            <span class="editorBtn" id="fullscreen" onclick="setAsBackground()" title="Фоновое изображение"><img src="icons/fullscreen.png" ></span>
         </div>
     </div>
     <a href="https://romanovsky-g.github.io/ncpp/public/" target="_blank" id="creds">© NCPP</a>
@@ -39,5 +42,4 @@
     <div class="lds-facebook" id="loadAnim"><div></div><div></div><div></div></div>
 
 </body>
-
 </html>

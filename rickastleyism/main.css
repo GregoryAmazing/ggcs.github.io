@@ -1,0 +1,62 @@
+body{
+	background-image: url("imgs/background.gif");
+}
+
+div.sticky {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+}
+
+.center-content{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.main-content{
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 3rem 4rem;
+	width: 85%;
+	display: inline-block;
+	text-align: start;
+}
+
+.img{
+	height: 200px;
+	display: inline;
+	float:left;
+	margin-right: 3rem;
+	border: #000000 solid 6px;
+}
+
+.main-header{
+	color: white;
+	font-size: 3rem;
+	text-shadow: 4px 4px 8px #000000;
+}
+
+audio{
+	border: #000000 solid 3px;
+	border-radius: 50px;
+}
+
+p{
+	color: rgb(0, 0, 0);
+	font-size: 1.5rem;
+	display: block;
+}
+
+imp{
+	background: rgb(0, 0, 0);
+	color: white;
+	border-radius: 5px;
+	padding: 0.2rem;
+}
+
+undln{
+	text-decoration: #000000 underline;
+}

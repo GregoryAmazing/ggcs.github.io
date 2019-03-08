@@ -80,11 +80,15 @@ canvas{
 }
 
 .editorBtn{
-    display: block;
     width: 45px;
+    display: block;
     height: 45px;
     margin: 2px;
     cursor: pointer;
+}
+
+.editorBtn img{
+    width: 45px;
 }
 
 .sidenav h1 {
