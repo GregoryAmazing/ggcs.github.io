@@ -109,7 +109,7 @@ function addImg(name, tuneScale = true) {
         reqEnd()
     });
 }
-
+00000000000000000000000000000000
 function setAsBackground() {
     if (canvas.getActiveObjects().length == 0)
         alert("Выделите тот объект, котроый хотите поставить как фоновое изображение!")
