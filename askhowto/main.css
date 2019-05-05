@@ -1,0 +1,144 @@
+button,
+input:focus {
+  outline: 0;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  padding: 0;
+  margin: 0;
+}
+
+#header {
+  padding: 1em;
+  background-color: #93b874;
+}
+#logo {
+  cursor: pointer;
+  width: 250px;
+}
+
+#fakebody {
+  padding: 1em;
+}
+
+#main-wrap {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+.fnt {
+  font-size: 1.5em;
+}
+.search-btn {
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  border: 3px solid #93b874;
+  background-color: #93b874;
+  color: rgb(255, 255, 255);
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+.search-btn:active {
+  background-color: #6d8a55;
+}
+.search-input {
+  margin-bottom: 0.5em;
+  border-radius: 10px;
+  padding: 10px;
+  border: 3px solid #93b874;
+  background-color: rgb(255, 255, 255);
+  color: rgb(39, 39, 39);
+  caret-color: #93b874;
+}
+
+#foundtxt {
+  color: rgb(109, 109, 109);
+  display: block;
+}
+
+#artcile {
+  display: block;
+  width: 50%;
+  height: 150px;
+  border: 3px solid #93b874;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(39, 39, 39);
+  box-shadow: 0px 0px 25px rgb(13, 88, 47);
+  cursor: pointer;
+}
+
+#thumb {
+  float: left;
+  height: 100%;
+}
+
+#head {
+  float: left;
+  margin: 10px;
+  margin-top: 1px;
+  font-size: 1.6em;
+  padding-top: 10px;
+  color: #373;
+}
+
+#found-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+#arctile-wrap {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  color: #545454;
+  height: 1000px;
+}
+
+#artcileImg {
+  width: 100%;
+}
+
+@media (max-width: 1050px) {
+  #artcile {
+    width: 80%;
+  }
+}
+
+@media (max-width: 750px) {
+  #artcile {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  #main {
+    width: 95%;
+  }
+}
+
+@media (max-width: 450px) {
+  .search-input {
+    width: 70%;
+  }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <title>Ask How to - How to do anything</title>
+    <link rel="stylesheet" href="loader.css" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="header">
+      <img src="logo.png" id="logo" onclick="location.reload()" />
+    </div>
+    <div id="fakebody">
+      <div id="main-wrap">
+        <input
+          type="text"
+          placeholder="How to..."
+          class="fnt search-input"
+          id="question"
+        />
+        <button class="fnt search-btn" onclick="seacrh()">Search!</button>
+        <div class="lds-spinner" id="spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div id="found-content" style="display:none;">
+          <p id="foundtxt">
+            Found 1 article
+          </p>
+          <div id="artcile" onclick="openArticle()">
+            <img id="thumb" src="" />
+            <h2 id="head">How to</h2>
+          </div>
+        </div>
+      </div>
+      <div id="arctile-wrap">
+        <div id="main">
+          <h1 style="float:left;color:#2e2e2e;" id="arctile-head">How to</h1>
+          <div>
+            <img src="" id="artcileImg" />
+            <h2>1. Kill yourself.</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function $(arg) {
+        return document.querySelector(arg);
+      }
+
+      var imgs = [
+        'https://www.wikihow.com/images/thumb/e/e0/Hang-String-Lights-in-a-Backyard-Without-Trees-Step-4.jpg/aid10980610-v4-728px-Hang-String-Lights-in-a-Backyard-Without-Trees-Step-4.jpg.webp',
+        'https://www.wikihow.com/images/thumb/9/9e/Get-Effects-on-Snapchat-Step-2-Version-3.jpg/aid4157156-v4-728px-Get-Effects-on-Snapchat-Step-2-Version-3.jpg.webp',
+        'https://www.wikihow.com/images/thumb/0/03/Unclog-a-Toilet-Step-5-Version-6.jpg/aid5207-v4-728px-Unclog-a-Toilet-Step-5-Version-6.jpg.webp',
+        'https://damn.dog/img/pics/win-a-race.jpg',
+        'https://damn.dog/img/pics/deal-with-a-love-triangle.jpg',
+        'https://damn.dog/img/pics/enjoy-pornography-in-the-comfort-of-your-home.jpg',
+        'https://damn.dog/img/pics/impress-people.jpg',
+        'https://damn.dog/img/pics/be-laid-back.jpg',
+        'https://damn.dog/img/pics/catch-a-cheating-girlfriend.jpg',
+        'https://www.wikihow.com/images/thumb/9/94/Watch-Star-Wars-Step-7.jpg/aid6098479-v4-728px-Watch-Star-Wars-Step-7.jpg.webp',
+        'https://www.wikihow.com/images/thumb/f/f1/Watch-Star-Wars-on-Command-Prompt-Step-10.jpg/aid620597-v4-728px-Watch-Star-Wars-on-Command-Prompt-Step-10.jpg.webp',
+        'https://www.wikihow.com/images/thumb/7/74/Sag-Your-Pants-Step-12.jpg/aid185190-v4-728px-Sag-Your-Pants-Step-12.jpg.webp',
+        'https://www.wikihow.com/images/thumb/c/c2/Run-a-Marathon-Step-3.jpg/aid47696-v4-728px-Run-a-Marathon-Step-3.jpg.webp'
+      ];
+      $('#thumb').src = imgs[Math.floor(Math.random() * (imgs.length - 1))];
+      $('#artcileImg').src =
+        imgs[Math.floor(Math.random() * (imgs.length - 1))];
+
+      var quest = '';
+      function seacrh() {
+        quest = $('#question').value.trim();
+        if (quest != '') {
+          $('#found-content').style.display = 'none';
+          $('#spinner').style.display = 'inline-block';
+
+          setTimeout(() => {
+            findArticle();
+          }, Math.floor(Math.random() * 1100) + 900);
+        }
+      }
+
+      function findArticle() {
+        $('#head').innerText = 'How to ' + quest;
+        $('#thumb').src = imgs[Math.floor(Math.random() * (imgs.length - 1))];
+        $('#found-content').style.display = 'flex';
+        $('#spinner').style.display = 'none';
+      }
+
+      function openArticle() {
+        $('#arctile-head').innerText = 'How to ' + quest;
+        $('#main-wrap').style.display = 'none';
+        $('#arctile-wrap').style.display = 'flex';
+        $('#artcileImg').src =
+          imgs[Math.floor(Math.random() * (imgs.length - 1))];
+      }
+    </script>
+  </body>
+</html>
