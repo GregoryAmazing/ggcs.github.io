@@ -4,7 +4,7 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
 let cx = canvas.getContext('2d');
-let scale = 0.8;
+let scale = 1;
 
 function $(selector) {
     return document.querySelector(selector);
