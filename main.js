@@ -12,3 +12,9 @@ $.ajax({
     },
     dataType: 'jsonp'
 });
+
+function renderfiles() {
+    alldata.forEach(element => {
+        $('body').append('<a href="">' + element.name + '</a>');
+    });
+}
