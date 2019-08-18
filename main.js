@@ -14,7 +14,7 @@ $.ajax({
 });
 
 function renderfiles() {
-    alldata.forEach(element => {
+    alldata.data.forEach(element => {
         $('body').append('<a href="">' + element.name + '</a>');
     });
 }
