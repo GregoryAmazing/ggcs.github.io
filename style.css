@@ -1,0 +1,13 @@
+.file {
+    display: block;
+    padding: 0.1rem;
+    width: max-content;
+    color: black;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.file:hover {
+    padding-left: 1rem;
+}
