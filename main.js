@@ -5,7 +5,8 @@ var geturlpath = '';
 $.ajax({
     type: 'GET',
     url:
-        'https://api.github.com/repos/romanovsky-g/romanovsky-g.github.io/contents/',
+        'https://api.github.com/repos/romanovsky-g/romanovsky-g.github.io/contents/' +
+        '?client_id=Iv1.9def353af8ab584d&client_secret=6ce132839a5cf0c4cb28e6298aaf5904cf0ac9fd',
     success: function(data) {
         alldata = data;
         renderfiles();
@@ -47,7 +48,8 @@ function openlink(indx) {
             type: 'GET',
             url:
                 'https://api.github.com/repos/romanovsky-g/romanovsky-g.github.io/contents' +
-                geturlpath,
+                geturlpath +
+                '?client_id=Iv1.9def353af8ab584d&client_secret=6ce132839a5cf0c4cb28e6298aaf5904cf0ac9fd',
             success: function(data) {
                 alldata = data;
                 $('#files').empty();
