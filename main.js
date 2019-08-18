@@ -6,7 +6,7 @@ $.ajax({
     type: 'GET',
     url:
         'https://api.github.com/repos/romanovsky-g/romanovsky-g.github.io/contents/' +
-        '?client_id=Iv1.9def353af8ab584d&client_secret=6ce132839a5cf0c4cb28e6298aaf5904cf0ac9fd',
+        '?client_id=xxxx&client_secret=yyyy',
     success: function(data) {
         alldata = data;
         renderfiles();
@@ -49,7 +49,7 @@ function openlink(indx) {
             url:
                 'https://api.github.com/repos/romanovsky-g/romanovsky-g.github.io/contents' +
                 geturlpath +
-                '?client_id=Iv1.9def353af8ab584d&client_secret=6ce132839a5cf0c4cb28e6298aaf5904cf0ac9fd',
+                '?client_id=xxxx&client_secret=yyyy',
             success: function(data) {
                 alldata = data;
                 $('#files').empty();
@@ -61,4 +61,13 @@ function openlink(indx) {
             dataType: 'jsonp'
         });
     }
+    if (elem.type == 'file') {
+        let fileurl = 'romanovsky-g.github.io' + geturlpath + '/' + elem.name;
+        openInNewTab(fileurl);
+    }
+}
+
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
 }
