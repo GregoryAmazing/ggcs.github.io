@@ -1,0 +1,101 @@
+button,
+input:focus {
+    outline: 0;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    color: white;
+    margin-left: 1rem;
+}
+
+#header {
+    padding: 0.1rem;
+    background-color: #4a30db;
+}
+
+#logo {
+    cursor: pointer;
+    width: 250px;
+}
+
+#fakebody {
+    padding: 1em;
+}
+
+#main-wrap {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+.fnt {
+    font-size: 1.5em;
+}
+
+#copied {
+    margin: 0.2rem;
+    display: none;
+    background: rgb(65, 182, 81);
+    color: white;
+    transition-duration: 0.2s;
+}
+
+.btn {
+    margin-bottom: 0.6rem;
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid #17186b;
+    background-color: #3033db;
+    color: rgb(255, 255, 255);
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.btn:active {
+    background-color: rgb(49, 51, 122);
+}
+
+.search-input {
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid #3033db;
+    background-color: rgb(255, 255, 255);
+    color: rgb(39, 39, 39);
+    caret-color: #0a0a27;
+}
+
+@media (max-width: 1050px) {
+    #artcile {
+        width: 80%;
+    }
+}
+
+@media (max-width: 750px) {
+    #artcile {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    #main {
+        width: 95%;
+    }
+}
+
+@media (max-width: 450px) {
+    .search-input {
+        width: 70%;
+    }
+}

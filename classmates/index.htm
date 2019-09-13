@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta
+            charset="UTF-8"
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
+        <link rel="icon" type="image/png" href="icon.png" />
+        <title>Дежурство Гимназия 53</title>
+        <link rel="stylesheet" href="main.css" />
+        <script src="code.js" defer></script>
+    </head>
+    <body>
+        <div id="header">
+            <h2>Дежурство</h2>
+        </div>
+        <div id="fakebody">
+            <div id="main-wrap">
+                <button class="fnt btn" onclick="copy()">
+                    Скопировать в буфер обмена
+                </button>
+                <span id="copied">Скопировано</span>
+                <span id="list"></span>
+                <textarea
+                    id="clipboard"
+                    style="position: absolute; top: -300px"
+                ></textarea>
+            </div>
+        </div>
+    </body>
+</html>
