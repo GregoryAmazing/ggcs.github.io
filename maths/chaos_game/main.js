@@ -119,8 +119,7 @@ function start(n, r, customShape = null, timer = 400) {
             } if (rules.CVIN2PAFP) {
                 // TO DO: текущая выбранная вершина не может быть в 2 местах от ранее выбранной вершины.
             }
-            else { placeNewPoint(next); console.log(nextPointNum);
-            }
+            else { placeNewPoint(next) }
             prevPointNum = nextPointNum;
             prev = next;
         }
