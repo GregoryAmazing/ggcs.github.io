@@ -99,8 +99,6 @@ function start(n, r, customShape = null, timer = 400) {
     });
 
     loop = setInterval(() => {
-        cx.fillStyle = 'blue';
-        cx.fillRect(245, 17, 200, 24);
         cx.fillStyle = 'white';
         cx.font = '18px Arial';
         cx.fillText('Iterations: ' + ittrs, 250, 35);
