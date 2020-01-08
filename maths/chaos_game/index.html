@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-    />
-    <title>The Chaos Game</title>
-    <script src="main.js" defer></script>
-    <style>
-      .overlay {
-        position: absolute;
-        z-index: 66;
-      }
-      #ctrl-panel {
-        height: 100%;
-        width: 200px;
-        top: 0;
-        left: 0;
-        padding: 1rem;
-        font-size: 1.1rem;
-        font-family: Arial, Helvetica, sans-serif;
-        color: white;
-        background: rgb(25, 25, 25);
-      }
-    </style>
-  </head>
-  <body style="overflow:hidden;margin: 0">
-    <div class="overlay" id="ctrl-panel">
-      <label for="N">Coefficient N:</label>
-      <input type="number" id="N" value="3" />
-      <br /><br />
-      <label for="R">Coefficient R:</label>
-      <input type="number" id="R" value="0.5" />
-      <br /><br />
-      <label for="timer">Stop after:</label>
-      <input type="number" id="timer" value="600" />
-      <br /><br />
-      <button id="start-btn" onclick="start_html()">Start</button>
-      <button id="stop-btn" onclick="stop()">Stop</button>
-    </div>
-    <canvas width="500" height="500"></canvas>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>The Chaos Game</title>
+  <script src="main.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="overflow:hidden;margin: 0">
+  <div class="overlay" id="ctrl-panel">
+    <label class="title">Управление:</label>
+    <button id="start-btn" onclick="start_html()" class="btn"><i class="fa fa-play"></i></button>
+    <button id="stop-btn" onclick="stop()" class="btn"><i class="fa fa-stop"></i></button>
+    <br><br>
+    <label for="N" class="title">Коэффициент N:</label>
+    <input type="number" id="N" value="3" />
+    <br><br>
+    <label for="R" class="title">Коэффициент R:</label>
+    <input type="number" id="R" value="0.5" />
+    <br><br>
+    <label for="timer" class="title">Итераций:</label>
+    <input type="number" id="timer" value="1000" />
+    <br><br>
+    <label class="title">Правила:</label class="title">
+
+    <label class="container"> Нет
+      <input type="radio" checked="checked" name="rule" value="none"  onchange="setRule(this.value)">
+      <!--No Rules-->
+      <span class="checkmark"></span>
+    </label><br>
+    <label class="container"> Текущая выбранная вершина не может совпадать с ранее выбранной.
+      <input type="radio" name="rule" value="CVINP" onchange="setRule(this.value)">
+      <!--Current Vertex Is Not Previous-->
+      <span class="checkmark"></span>
+    </label><br>
+    <label class="container"> Текущая выбранная вершина не может быть в 2 местах от ранее выбранной вершины..
+      <input type="radio" name="rule" value="CVIN2PAFP" onchange="setRule(this.value)">
+      <!--Current Vertex Is Not 2 Places Away From Previous-->
+      <span class="checkmark"></span>
+    </label><br>
+
+
+  </div>
+  <canvas width="500" height="500"></canvas>
+</body>
+
 </html>

@@ -9,7 +9,7 @@ function $(selector) {
     return document.querySelector(selector);
 }
 
-function point(obj, color = 'red', radius = 1) {
+function point(obj, color = 'black', radius = 1) {
     cx.fillStyle = color;
     cx.beginPath();
     cx.arc(obj.x, obj.y, radius, 0, 2 * Math.PI);
@@ -21,7 +21,7 @@ function fillScreen(color) {
     cx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-fillScreen('black');
+fillScreen('white');
 
 function lerp(a, b, frac) {
     // points A and B, frac between 0 and 1
@@ -62,7 +62,7 @@ function genPoints(nSides) {
 
 let R = 0.5;
 let N = 6;
-let rules = { CCBLP: false };
+let rules = { CVINP: false, CVIN2PAFP: false};
 let serp_carpet = [
     { x: 100, y: 100 },
     { x: 300, y: 100 },
@@ -82,6 +82,12 @@ let main_points = [];
 let chaos_point = { x: 0, y: 0 };
 
 let prev;
+let prevPointNum;
+
+function setRule(rule) {
+    Object.keys(rules).forEach(v => rules[v] = false)
+    rules[rule] = true;
+}
 
 function start(n, r, customShape = null, timer = 400) {
     N = n;
@@ -99,24 +105,23 @@ function start(n, r, customShape = null, timer = 400) {
     });
 
     loop = setInterval(() => {
-        cx.fillStyle = 'black';
-        cx.fillRect(245, 17, 200, 24);
         cx.fillStyle = 'white';
+        cx.fillRect(245, 17, 200, 24);
+        cx.fillStyle = 'black';
         cx.font = '18px Arial';
         cx.fillText('Iterations: ' + ittrs, 250, 35);
 
         for (let i = 0; i < 100; i++) {
-            let next =
-                main_points[Math.floor(Math.random() * main_points.length)];
-            if (rules.CCBLP) {
-                if (next !== prev) {
-                    chaos_point = lerp(chaos_point, next, (r = R));
-                    point(chaos_point, (color = 'red'), (radius = 0.5));
-                }
-            } else {
-                chaos_point = lerp(chaos_point, next, (r = R));
-                point(chaos_point, (color = 'red'), (radius = 0.5));
+            let nextPointNum = Math.floor(Math.random() * main_points.length)
+            let next = main_points[nextPointNum];
+            if (rules.CVINP) {
+                if (next !== prev) { placeNewPoint(next) }
+            } if (rules.CVIN2PAFP) {
+                // TO DO: текущая выбранная вершина не может быть в 2 местах от ранее выбранной вершины.
             }
+            else { placeNewPoint(next); console.log(nextPointNum);
+            }
+            prevPointNum = nextPointNum;
             prev = next;
         }
 
@@ -125,6 +130,11 @@ function start(n, r, customShape = null, timer = 400) {
             stop();
         }
     }, speed);
+}
+
+function placeNewPoint(nextPoint) {
+    chaos_point = lerp(chaos_point, nextPoint, (r = R));
+    point(chaos_point, (color = 'black'), (radius = 0.5));
 }
 
 function start_html() {
@@ -168,7 +178,7 @@ let fractal_index = 1;
 function reset() {
     ittrs = 0;
     clearInterval(loop);
-    fillScreen('black');
+    fillScreen('white');
 }
 
 function stop() {
