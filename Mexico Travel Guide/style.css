@@ -1,0 +1,66 @@
+span{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    background-image: url('mexico_flag.gif');
+    background-size: 200px;
+    background-color: black;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#bottombox{
+    width: 800px;
+    height: max-content;
+    padding-bottom: 100px;
+    background-color: white;
+    box-shadow: 0px 0px 100px 50px rgba(0, 0, 0, 0.75);
+}
+
+#titlecard{
+    width: 97%;
+    height: max-content;
+    margin: auto;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 10px;
+    border-bottom:3px solid #eeeeee;
+}
+
+#maintitletext{
+    display: inline-block;
+    margin: 0.7rem;
+    margin-bottom: 0;
+    font-size: x-large;
+}
+
+#thumbimg{
+    width: 97%;
+    display:block;
+    margin: auto;
+}
+
+.textcard{
+    width: 97%;
+    margin: auto;
+    margin-top: 15px;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 10px;
+    border-bottom:3px solid #eeeeee;
+}
+
+.cardtitle{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.cardcontent{
+    font-size: 1.1rem;
+}

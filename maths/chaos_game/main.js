@@ -12,7 +12,7 @@ function $(selector) {
 function point(obj, color = 'black', radius = 1) {
     cx.fillStyle = color;
     cx.beginPath();
-    cx.arc(obj.x, obj.y, radius, 0, 2 * Math.PI);
+    cx.rect(Math.round(obj.x), Math.round(obj.y), radius, radius);
     cx.fill();
 }
 
@@ -62,7 +62,7 @@ function genPoints(nSides) {
 
 let R = 0.5;
 let N = 6;
-let rules = { CVINP: false, CVIN2PAFP: false};
+let rules = { CVINP: false, CVIN2PAFP: false };
 let serp_carpet = [
     { x: 100, y: 100 },
     { x: 300, y: 100 },
@@ -111,17 +111,34 @@ function start(n, r, customShape = null, timer = 400) {
         cx.font = '18px Arial';
         cx.fillText('Iterations: ' + ittrs, 250, 35);
 
+        // OLD
         for (let i = 0; i < 100; i++) {
-            let nextPointNum = Math.floor(Math.random() * main_points.length)
+            let nextPointNum = Math.floor(Math.random() * main_points.length);
             let next = main_points[nextPointNum];
-            if (rules.CVINP) {
-                if (next !== prev) { placeNewPoint(next) }
-            } if (rules.CVIN2PAFP) {
-                // TO DO: текущая выбранная вершина не может быть в 2 местах от ранее выбранной вершины.
+
+            switch (true) {
+                case rules.CVINP:
+                    if (prevPointNum !== nextPointNum) {
+                        chaos_point = lerp(chaos_point, next, (r = R));
+                        point(chaos_point, (color = 'black'));
+                    }
+                    break;
+
+                case rules.CVIN2PAFP:
+                    if (Math.abs(nextPointNum - prevPointNum) !== 2) {
+                        chaos_point = lerp(chaos_point, next, (r = R));
+                        point(chaos_point, (color = 'black'));
+                    }
+                    break;
+
+                default:
+                    chaos_point = lerp(chaos_point, next, (r = R));
+                    point(chaos_point, (color = 'black'));
+                    break;
             }
-            else { placeNewPoint(next) }
-            prevPointNum = nextPointNum;
+
             prev = next;
+            prevPointNum = nextPointNum;
         }
 
         ittrs++;
@@ -131,15 +148,10 @@ function start(n, r, customShape = null, timer = 400) {
     }, speed);
 }
 
-function placeNewPoint(nextPoint) {
-    chaos_point = lerp(chaos_point, nextPoint, (r = R));
-    point(chaos_point, (color = 'black'), (radius = 0.5));
-}
-
 function start_html() {
     start(
         JSON.parse($('#N').value),
-        JSON.parse($('#R').value),
+        JSON.parse($('#R1').value)/JSON.parse($('#R2').value),
         (customShape = null),
         (timer = JSON.parse($('#timer').value))
     );
@@ -167,7 +179,7 @@ let fractal_rules = [
     { n: 3, r: 0.5 },
     { n: 4, r: 0.6 },
     { n: 5, r: 0.6 },
-    { n: 6, r: 0.6 },
+    { n: 6, r: 3/2 },
     { n: 7, r: 0.6 },
     { n: 8, r: 0.6 },
     { n: 15, r: 0.75 }
