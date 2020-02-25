@@ -1,5 +1,11 @@
+@font-face {
+    font-family: ProximaNova;
+    src: url(ProximaNova-Regular.otf);
+}
+
 span{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: ProximaNova;
+    color: #2a2b29;
 }
 
 html{
@@ -39,6 +45,7 @@ body{
     display: inline-block;
     margin-bottom: 0;
     font-size: 2rem;
+    font-weight: 700;
 }
 
 #thumbimg{
@@ -48,8 +55,7 @@ body{
     margin: auto;
     object-fit: cover;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);}
-
+}   
 .textcard{
     width: 97%;
     margin: auto;
@@ -63,6 +69,7 @@ body{
     display: inline-block;
     margin-bottom: 0.7rem;
     font-size: x-large;
+    font-weight: bold;
 }
 
 .cardcontent{
