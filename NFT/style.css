@@ -1,0 +1,50 @@
+@font-face {
+    font-family: ProximaNova;
+    src: url(ProximaNova-Regular.otf);
+}
+
+span{
+    font-family: ProximaNova;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2a2b29;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bottombox{
+    text-align: center;
+    height: max-content;
+    display: flex;
+    max-width: 50%;
+    align-items: center;
+    flex-direction: column;
+}
+
+#relapseBtn {
+    border-radius: 10px;
+    background-color: rgb(92, 92, 92);
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-family: ProximaNova;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+#relapseBtn:hover {
+    background-color: rgb(34, 34, 34);
+}
