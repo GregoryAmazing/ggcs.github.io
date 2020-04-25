@@ -1,23 +1,65 @@
 let squaresX = 16
 let squaresY = 16
-let squareSize = 0
-if(window.outerWidth >= 1000)
-    squareSize = 40
-else
-    squareSize = 20
 
-let offsetX = (window.innerWidth / 2) - (squaresX * (squareSize / 2))
-let offsetY = (window.innerHeight / 2) - (squaresY * (squareSize / 2))
+let squareSize;
 
-var colorChoice = "#0083c4";
+let offsetX;
+let offsetY;
 
-let colorInput = document.getElementById("colorInput")
+let gridSize;
 
-function updateColor(jscolor) {
-    colorChoice = "#" + jscolor;
+let canvasHeight = window.innerHeight/1.538 - 32;
+
+updateGrid()
+
+function updateGrid() {
+    let sidemargin = 10;
+
+    squareSize = (window.innerWidth-sidemargin)/squaresX;
+
+    offsetX = sidemargin/2;
+    offsetY = 70;
+
+    gridSize = squaresX*squareSize;
+        
 }
 
-function changeColors(oldColor, newColor) {
+function windowResized() {
+    resizeCanvas(window.innerWidth, canvasHeight)
+    updateGrid()
+}
+
+var colorChoice = "#000000";
+
+let colorInput = document.getElementById("color")
+
+let mode = "";
+
+function updMode(toMode) {
+    let toolbtns = document.querySelectorAll(".toolbtn");
+    mode = toMode
+    for (let i = 0; i < toolbtns.length; i++) {
+        toolbtns[i].classList.remove("toolselect")
+
+        if (toolbtns[i].id == toMode)
+            toolbtns[i].classList.add("toolselect")
+    }
+}
+
+updMode("pen")
+
+let kcolorpicker = new KellyColorPicker({
+    place : 'picker', 
+    size : 200,
+    userEvents : {
+        change : function(self){
+            colorChoice = self.getCurColorHex();
+            updMode("pen")
+        }
+    }   
+});
+
+function swapColors(oldColor, newColor) {
     for (var x = 0; x < squaresX; x++) {
         for (var y = 0; y < squaresY; y++) {
             if (oldColor == "any")
@@ -30,7 +72,7 @@ function changeColors(oldColor, newColor) {
 
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
+    createCanvas(window.innerWidth, canvasHeight);
     grid = create2DArray();
 
     for (var x = 0; x < squaresX; x++) {
@@ -74,28 +116,7 @@ function draw() {
     fillGrid()
 }
 
-let mode = ""
 let databaseloaded = false;
-
-updMode("pen")
-
-function updMode(toMode) {
-    let disp = document.getElementById("modeDisplay")
-    let modes = {
-        "pen": "Pen",
-        "ers": "Earser",
-    }
-    if (toMode == "invert") {
-        if (mode == "pen")
-            mode = "ers"
-        else
-            mode = "pen"
-    }
-    else
-        mode = toMode
-    disp.innerText = "Mode: " + modes[mode];
-}
-
 
 document.addEventListener("keydown", e => {
     //console.log(e.keyCode);
@@ -110,20 +131,45 @@ document.getElementById("idInput").addEventListener("keyup", e=>{
         connectionTry(document.getElementById("idInput").value)
 })
 
-function mousePressed() {
+
+function drawpixels() {
     for (var x = 0; x < squaresX; x++) {
         for (var y = 0; y < squaresY; y++) {
             if (mouseX > x * squareSize + offsetX && mouseX < x * squareSize + squareSize + offsetX && mouseY > y * squareSize + offsetY && mouseY < y * squareSize + squareSize + offsetY && databaseloaded) {
                 if (mode == "pen") {
-                    grid[x][y] = colorChoice;
-                    deploy()
-                } else {
+                    if (colorChoice == "#ffffff")
+                        grid[x][y] = 0;
+                    else
+                        grid[x][y] = colorChoice;
+                } else if (mode == "eraser"){
+
                     grid[x][y] = 0;
-                    deploy()
+
+                } else if (mode == "dropper"){
+                        
+                    kcolorpicker.setColor(grid[x][y]);
+                    updMode("pen")
+                    
                 }
                 break;
             }
         }
+    }
+}
+
+function mouseDragged() {
+    drawpixels()
+}
+
+function mouseReleased() {
+    drawpixels()
+    if(
+        mouseX > offsetX - gridSize &&
+        mouseX < offsetX + gridSize &&
+        mouseY > offsetY - gridSize &&
+        mouseY < offsetY + gridSize)
+    {
+        deploy()
     }
 }
 
@@ -136,6 +182,7 @@ function existsCallBack(id, exists) {
     if (exists) {
         connectB(id)
         invDisp('boardMenu')
+        console.log(">> Connected to "+id);
       } else {
         alert('Board "' + id + '" does not exist...');
       }
@@ -156,9 +203,15 @@ function invDisp(elemId) {
     let elem = document.getElementById(elemId)
 
     if (elem.style.display == "none")
-        elem.style.display = "block"
+    {
+        elem.style.display = "flex"
+    }
     else
+    {
         elem.style.display = "none"
+        console.log("menu invis");
+        
+    }
 }
 
 var BID = ""
@@ -198,5 +251,8 @@ if(boardId != "")
 
 function deploy() {
     if(databaseloaded)
-        dataRef("cells",BID).set(grid);
+    {
+        dataRef("cells",BID).set(grid)
+        console.log("Deployed!");
+    }
 }
