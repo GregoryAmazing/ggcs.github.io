@@ -21,26 +21,7 @@
 </head>
 
 <body>
-  <div class="overlay" id="topbar">
-    <button id="Name" class="btn" ontouchstart="invDisp('boardMenu')" onclick="invDisp('boardMenu')">---------</button>
-  </div>
-
-  <div class="overlay" id="bottombar">
-    <canvas id="picker" width="150" height="150" style="width: 150px; height: 150px;"></canvas>
-    
-    <div id="toolbar">
-      <button class="toolbtn btn toolselect" id="pen" onclick="updMode(`pen`)"  ><i class="fas fa-pen"></i></button>
-      <button class="toolbtn btn" id="eraser" onclick="updMode(`eraser`)"  ><i class="fas fa-eraser"></i></button>
-      <button class="toolbtn btn" id="dropper" onclick="updMode(`dropper`)"  ><i class="fas fa-eye-dropper"></i></button>
-    </div>
-  </div>
-
-  <div class="centerDiv" id="boardMenu">
-    <p>Подкючиться к Публичному Холсту:</p>
-    <button class="btn" style="display:inline-block" onclick="connectionTry('PublicBoard')">Публичный Холст</button>
-    <p>Подкючиться к Холсту по ID:</p>
-    <input class="btn" type="text" id="idInput" placeholder="ID Холста">
-  </div>
+ 
 </body>
 
 </html>

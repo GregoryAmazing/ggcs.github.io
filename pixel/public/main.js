@@ -13,14 +13,21 @@ let canvasHeight = window.innerHeight/1.538 - 32;
 updateGrid()
 
 function updateGrid() {
-    let sidemargin = 10;
+    let sidemargin = 0;
 
-    squareSize = (window.innerWidth-sidemargin)/squaresX;
+    if (gridSize+offsetY >= canvasHeight)
+        squareSize = (canvasHeight-72)/squaresX;
+    else
+        squareSize = (window.innerWidth-sidemargin)/squaresX;
+        oldsquareSize = squareSize;
 
     offsetX = sidemargin/2;
     offsetY = 70;
 
     gridSize = squaresX*squareSize;
+
+   
+
         
 }
 
