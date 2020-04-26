@@ -141,6 +141,8 @@ document.getElementById("idInput").addEventListener("keyup", e=>{
         connectionTry(document.getElementById("idInput").value)
 })
 
+let origMouseX = 0;
+let origMouseY = 0;
 
 function drawpixels() {
     for (var x = 0; x < squaresX; x++) {
@@ -167,18 +169,30 @@ function drawpixels() {
     }
 }
 
+function mousePressed() {
+    origMouseX = mouseX;
+    origMouseY = mouseY;
+}
+
 function mouseDragged() {
-    drawpixels()
+    if(
+        origMouseX > offsetX &&
+        origMouseX < offsetX + gridSize &&
+        origMouseY > offsetY &&
+        origMouseY < offsetY + gridSize)
+    {
+        drawpixels()
+    }
 }
 
 function mouseReleased() {
-    drawpixels()
     if(
-        mouseX > offsetX - gridSize &&
-        mouseX < offsetX + gridSize &&
-        mouseY > offsetY - gridSize &&
-        mouseY < offsetY + gridSize)
+        origMouseX > offsetX &&
+        origMouseX < offsetX + gridSize &&
+        origMouseY > offsetY &&
+        origMouseY < offsetY + gridSize)
     {
+        drawpixels()
         deploy()
     }
 }
