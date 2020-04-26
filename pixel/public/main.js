@@ -10,6 +10,8 @@ let gridSize;
 
 let canvasHeight = window.innerHeight/1.538 - 32;
 
+let drawingAllowed = false;
+
 updateGrid()
 
 function updateGrid() {
@@ -179,7 +181,7 @@ function mouseDragged() {
         origMouseX > offsetX &&
         origMouseX < offsetX + gridSize &&
         origMouseY > offsetY &&
-        origMouseY < offsetY + gridSize)
+        origMouseY < offsetY + gridSize && drawingAllowed)
     {
         drawpixels()
     }
@@ -190,7 +192,7 @@ function mouseReleased() {
         origMouseX > offsetX &&
         origMouseX < offsetX + gridSize &&
         origMouseY > offsetY &&
-        origMouseY < offsetY + gridSize)
+        origMouseY < offsetY + gridSize && drawingAllowed)
     {
         drawpixels()
         deploy()
@@ -228,13 +230,14 @@ function invDisp(elemId) {
 
     if (elem.style.display == "none")
     {
+        drawingAllowed = false;
         elem.style.display = "flex"
     }
     else
     {
+        drawingAllowed = true;
         elem.style.display = "none"
         console.log("menu invis");
-        
     }
 }
 

@@ -20,9 +20,12 @@
   <title>Pixel Board</title>
 </head>
 
-<body>
+<body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+unselectable="on"
+onselectstart="return false;" 
+onmousedown="return false;">
   <div class="overlay" id="topbar">
-    <button id="Name" class="btn" ontouchstart="invDisp('boardMenu')" onclick="invDisp('boardMenu')">---------</button>
+    <button id="Name" class="btn" onclick="invDisp('boardMenu')">---------</button>
   </div>
 
   <div class="overlay" id="bottombar">
