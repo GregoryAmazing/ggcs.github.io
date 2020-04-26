@@ -20,13 +20,7 @@
   <title>Pixel Board</title>
 </head>
 
-<body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
-unselectable="on"
-onselectstart="return false;" 
-onmousedown="return false;">
-  <div class="overlay" id="topbar">
-    <button id="Name" class="btn" onclick="invDisp('boardMenu')">---------</button>
-  </div>
+<body>
 
   <div class="overlay" id="bottombar">
     <canvas id="picker" width="150" height="150" style="width: 150px; height: 150px;"></canvas>
@@ -44,6 +38,11 @@ onmousedown="return false;">
     <p>Подкючиться к Холсту по ID:</p>
     <input class="btn" type="text" id="idInput" placeholder="ID Холста">
   </div>
+  
+  <div class="overlay" id="topbar">
+    <button id="Name" class="btn" onclick="invDisp('boardMenu')">---------</button>
+  </div>
+
 </body>
 
 </html>

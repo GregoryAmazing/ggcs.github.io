@@ -29,11 +29,7 @@ function updateGrid() {
         offsetX = (window.innerWidth/2) - (squaresX*squareSize/2)
     }
 
-    gridSize = squaresX*squareSize;
-
-   
-
-        
+    gridSize = squaresX*squareSize;        
 }
 
 function windowResized() {
@@ -129,14 +125,6 @@ function draw() {
 }
 
 let databaseloaded = false;
-
-document.addEventListener("keydown", e => {
-    //console.log(e.keyCode);
-    if (e.keyCode == 69)
-        updMode("ers")
-    if (e.keyCode == 80)
-        updMode("pen")
-})
 
 document.getElementById("idInput").addEventListener("keyup", e=>{
     if(e.keyCode == 13)
