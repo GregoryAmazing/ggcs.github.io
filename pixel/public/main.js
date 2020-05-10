@@ -58,7 +58,7 @@ function updateGrid() {
     squareSize = (window.innerWidth - sidemargin) / squaresX;
     offsetX = sidemargin / 2;
   } else {
-    squareSize = canvasHeight / squaresX;
+    squareSize = (canvasHeight - sidemargin) / squaresX;
     offsetX = window.innerWidth / 2 - (squaresX * squareSize) / 2;
   }
 
