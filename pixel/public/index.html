@@ -34,12 +34,30 @@
 
   <div class="centerDiv" id="boardMenu">
     <p>Подкючиться к Публичному Холсту:</p>
-    <button class="btn" style="display:inline-block" onclick="connectionTry('PublicBoard')">Публичный Холст</button>
+    <button class="btn" style="display:inline-block" onclick="connectionTry('public1')">Публичный Холст 1</button>
+    <button class="btn" style="display:inline-block" onclick="connectionTry('public2')">Публичный Холст 2</button>
+    <button class="btn" style="display:inline-block" onclick="connectionTry('public3')">Публичный Холст 3</button>
+    <button class="btn" style="display:inline-block" onclick="connectionTry('public4')">Публичный Холст 4</button>
+
     <p>Подкючиться к Холсту по ID:</p>
     <input class="btn" type="text" id="idInput" placeholder="ID Холста">
   </div>
+
+  <div class="centerDiv" id="settingsMenu" style="display: none;">
+    <p>Толщина сетки:</p>
+    <p id="gridWidth">1</p>
+    <input type="range" min="0" max="2" value="1" class="slider" id="gridWidthRange" oninput="updateGridWidth(this.value)">
+    <p>Цвет сетки:</p>
+    <div id="gridColors">
+      <button class="toolbtn btn gridColor" onclick="updateGridColor(0)" style="background: black;"></button>
+      <button class="toolbtn btn gridColor" onclick="updateGridColor(255)"></button>
+    </div>
+    <button class="btn" style="display:inline-block;" onclick="invDisp('settingsMenu');saveSettings();">Сохранить</button>
+
+  </div>
   
   <div class="overlay" id="topbar">
+    <button id="settings" class="toolbtn btn" onclick="invDisp('settingsMenu')"><i class="fas fa-cog"></i></button>
     <button id="Name" class="btn" onclick="invDisp('boardMenu')">---------</button>
   </div>
 

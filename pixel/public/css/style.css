@@ -33,7 +33,7 @@ body {
 
 #bottombar {
     width: 100%;
-    height: 35%;
+    height: 220px;
     bottom: 0;
     border-top: solid 2px #c3c3c3;
     padding-top: 1rem;
@@ -46,12 +46,13 @@ body {
 }
 
 #topbar {
-    padding-top: 10px;
     width: 100%;
     height: min-content;
-    top: 0;
+    top: 5;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 1rem 0 1rem;
+    box-sizing: border-box;
 }
 
 .toolbtn{
@@ -104,4 +105,45 @@ body {
 
 ::placeholder{
     color: rgb(78, 78, 78);
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 15px;
+    border-radius: 5px;
+    background: #e4e4e4;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 4px solid rgb(92, 68, 231);
+    background: white;
+    cursor: pointer;
+}
+
+#gridColors {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+.gridColor {
+    height: 50px;
+    width: 50px !important;
+}
+
+#settingsMenu {
+    height: 250px;
+}
+
+#boardMenu{
+    top: 35%;
+    height: 350px;
 }

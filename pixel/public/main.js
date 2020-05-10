@@ -1,273 +1,331 @@
-let squaresX = 16
-let squaresY = 16
+let squaresX = 16;
+let squaresY = 16;
 
-let squareSize;
+let squareSize = 0;
 
-let offsetX;
-let offsetY;
+let offsetX = 0;
+let offsetY = 0;
 
-let gridSize;
-
-let canvasHeight = window.innerHeight/1.538 - 32;
+let gridSize = 0;
 
 let drawingAllowed = false;
 
-updateGrid()
+function setls(key, val) {
+  return localStorage.setItem(key, val);
+}
+
+function getls(key) {
+  return localStorage.getItem(key);
+}
+
+function loadSettings(settings) {
+  let newSettings = JSON.parse(settings);
+  updateGridWidth(newSettings.gridWidth);
+  updateGridColor(newSettings.gridColor);
+}
+
+function saveSettings() {
+  setls(
+    "settings",
+    '{"gridWidth": ' + gridWidth + ', "gridColor": ' + gridColor + "}"
+  );
+}
+
+window.onload = function () {
+  if (getls("settings")) loadSettings(getls("settings"));
+  else setls("settings", '{"gridWidth": 1, "gridColor": 0}');
+};
+
+function topBarHeight() {
+  return document.getElementById("topbar").clientHeight + 4;
+}
+
+function bottomBarHeight() {
+  return document.getElementById("bottombar").clientHeight + 2;
+}
+
+let canvasHeight = window.innerHeight - bottomBarHeight() - topBarHeight();
+
+updateGrid();
 
 function updateGrid() {
-    let sidemargin = 14;
-    offsetY = 70;
+  let sidemargin = 14;
+  offsetY = 0;
 
-    if (canvasHeight-70>window.innerWidth)
-    {
-        squareSize = (window.innerWidth-sidemargin)/squaresX;
-        offsetX = sidemargin/2;
-    }
-    else
-    {
-        squareSize = (canvasHeight-76)/squaresX;
-        offsetX = (window.innerWidth/2) - (squaresX*squareSize/2)
-    }
+  canvasHeight = window.innerHeight - bottomBarHeight() - topBarHeight();
 
-    gridSize = squaresX*squareSize;        
+  if (canvasHeight > window.innerWidth) {
+    squareSize = (window.innerWidth - sidemargin) / squaresX;
+    offsetX = sidemargin / 2;
+  } else {
+    squareSize = canvasHeight / squaresX;
+    offsetX = window.innerWidth / 2 - (squaresX * squareSize) / 2;
+  }
+
+  gridSize = squaresX * squareSize;
+  offsetY = sidemargin / 2 + (canvasHeight / 2 - gridSize / 2);
 }
 
-function windowResized() {
-    resizeCanvas(window.innerWidth, canvasHeight)
-    updateGrid()
+function resize() {
+  resizeCanvas(window.innerWidth, canvasHeight);
+  updateGrid();
 }
+
+window.addEventListener("resize", resize);
 
 var colorChoice = "#000000";
 
-let colorInput = document.getElementById("color")
+let colorInput = document.getElementById("color");
 
 let mode = "";
 
 function updMode(toMode) {
-    let toolbtns = document.querySelectorAll(".toolbtn");
-    mode = toMode
-    for (let i = 0; i < toolbtns.length; i++) {
-        toolbtns[i].classList.remove("toolselect")
+  let toolbtns = document.querySelectorAll(".toolbtn");
+  mode = toMode;
+  for (let i = 0; i < toolbtns.length; i++) {
+    toolbtns[i].classList.remove("toolselect");
 
-        if (toolbtns[i].id == toMode)
-            toolbtns[i].classList.add("toolselect")
-    }
+    if (toolbtns[i].id == toMode) toolbtns[i].classList.add("toolselect");
+  }
 }
 
-updMode("pen")
+updMode("pen");
 
 let kcolorpicker = new KellyColorPicker({
-    place : 'picker', 
-    size : 200,
-    userEvents : {
-        change : function(self){
-            colorChoice = self.getCurColorHex();
-            updMode("pen")
-        }
-    }   
+  place: "picker",
+  size: 200,
+  userEvents: {
+    change: function (self) {
+      colorChoice = self.getCurColorHex();
+      updMode("pen");
+    },
+  },
 });
 
 function swapColors(oldColor, newColor) {
-    for (var x = 0; x < squaresX; x++) {
-        for (var y = 0; y < squaresY; y++) {
-            if (oldColor == "any")
-                grid[x][y] = newColor;
-            else if (grid[x][y] == oldColor)
-                grid[x][y] = newColor;
-        }
+  for (var x = 0; x < squaresX; x++) {
+    for (var y = 0; y < squaresY; y++) {
+      if (oldColor == "any") grid[x][y] = newColor;
+      else if (grid[x][y] == oldColor) grid[x][y] = newColor;
     }
+  }
 }
 
+var canvas;
 
 function setup() {
-    createCanvas(window.innerWidth, canvasHeight);
-    grid = create2DArray();
+  canvas = createCanvas(window.innerWidth, canvasHeight);
+  canvas.position(0, topBarHeight());
 
-    for (var x = 0; x < squaresX; x++) {
-        for (var y = 0; y < squaresY; y++) {
-            grid[x][y] = 0;
-        }
+  grid = create2DArray();
+
+  for (var x = 0; x < squaresX; x++) {
+    for (var y = 0; y < squaresY; y++) {
+      grid[x][y] = 0;
     }
+  }
 }
 
 function create2DArray() {
+  var arr = new Array(squaresX);
+  for (var x = 0; x < arr.length; x++) {
+    arr[x] = new Array(squaresX);
+  }
 
-    var arr = new Array(squaresX);
-    for (var x = 0; x < arr.length; x++) {
-        arr[x] = new Array(squaresX);
-    }
-
-    return arr;
+  return arr;
 }
 
+let gridWidth = 1;
+let gridColor = 0;
 
+function updateGridColor(newColor) {
+  gridColor = newColor;
+}
+
+function updateGridWidth(newWidth) {
+  document.getElementById("gridWidth").innerHTML = newWidth;
+  document.getElementById("gridWidthRange").value = newWidth;
+  gridWidth = JSON.parse(newWidth);
+}
 function fillGrid() {
+  background(255);
+  strokeWeight(0);
+  stroke(0);
 
-    background(255);
-    strokeWeight(1);
-    stroke(0);
+  fill(gridColor);
 
-    for (var x = 0; x < squaresX; x++) {
-        for (var y = 0; y < squaresY; y++) {
-            if (grid[x][y] != 0) {
-                let cell = grid[x][y]
-                fill(cell)
-            } else {
-                fill(255);
-            }
-            rect(x * squareSize + offsetX, y * squareSize + offsetY, squareSize - 1, squareSize - 1);
-        }
+  if (gridWidth != 0)
+    rect(
+      offsetX - gridWidth / 2,
+      offsetY - gridWidth / 2,
+      squareSize * 16,
+      squareSize * 16
+    );
+  else rect(offsetX - 1, offsetY - 1, squareSize * 16 + 3, squareSize * 16 + 3);
+
+  for (var x = 0; x < squaresX; x++) {
+    for (var y = 0; y < squaresY; y++) {
+      if (grid[x][y] != 0) {
+        let cell = grid[x][y];
+        fill(cell);
+      } else {
+        fill(255);
+      }
+      let newGridWidth = gridWidth;
+      if (gridWidth == 0) newGridWidth = -1;
+      rect(
+        x * squareSize + offsetX,
+        y * squareSize + offsetY,
+        squareSize - newGridWidth,
+        squareSize - newGridWidth
+      );
     }
+  }
 }
 
 function draw() {
-    fillGrid()
+  fillGrid();
 }
 
 let databaseloaded = false;
 
-document.getElementById("idInput").addEventListener("keyup", e=>{
-    if(e.keyCode == 13)
-        connectionTry(document.getElementById("idInput").value)
-})
+document.getElementById("idInput").addEventListener("keyup", (e) => {
+  if (e.keyCode == 13) connectionTry(document.getElementById("idInput").value);
+});
 
 let origMouseX = 0;
 let origMouseY = 0;
 
 function drawpixels() {
-    for (var x = 0; x < squaresX; x++) {
-        for (var y = 0; y < squaresY; y++) {
-            if (mouseX > x * squareSize + offsetX && mouseX < x * squareSize + squareSize + offsetX && mouseY > y * squareSize + offsetY && mouseY < y * squareSize + squareSize + offsetY && databaseloaded) {
-                if (mode == "pen") {
-                    if (colorChoice == "#ffffff")
-                        grid[x][y] = 0;
-                    else
-                        grid[x][y] = colorChoice;
-                } else if (mode == "eraser"){
-
-                    grid[x][y] = 0;
-
-                } else if (mode == "dropper"){
-                        
-                    kcolorpicker.setColor(grid[x][y]);
-                    updMode("pen")
-                    
-                }
-                break;
-            }
+  for (var x = 0; x < squaresX; x++) {
+    for (var y = 0; y < squaresY; y++) {
+      if (
+        mouseX > x * squareSize + offsetX &&
+        mouseX < x * squareSize + squareSize + offsetX &&
+        mouseY > y * squareSize + offsetY &&
+        mouseY < y * squareSize + squareSize + offsetY &&
+        databaseloaded
+      ) {
+        if (mode == "pen") {
+          if (colorChoice == "#ffffff") grid[x][y] = 0;
+          else grid[x][y] = colorChoice;
+        } else if (mode == "eraser") {
+          grid[x][y] = 0;
+        } else if (mode == "dropper") {
+          kcolorpicker.setColor(grid[x][y]);
+          updMode("pen");
         }
+        break;
+      }
     }
+  }
 }
 
 function mousePressed() {
-    origMouseX = mouseX;
-    origMouseY = mouseY;
+  origMouseX = mouseX;
+  origMouseY = mouseY;
 }
 
 function mouseDragged() {
-    if(
-        origMouseX > offsetX &&
-        origMouseX < offsetX + gridSize &&
-        origMouseY > offsetY &&
-        origMouseY < offsetY + gridSize && drawingAllowed)
-    {
-        drawpixels()
-    }
+  if (
+    origMouseX > offsetX &&
+    origMouseX < offsetX + gridSize &&
+    origMouseY > offsetY &&
+    origMouseY < offsetY + gridSize &&
+    drawingAllowed
+  ) {
+    drawpixels();
+  }
 }
 
 function mouseReleased() {
-    if(
-        origMouseX > offsetX &&
-        origMouseX < offsetX + gridSize &&
-        origMouseY > offsetY &&
-        origMouseY < offsetY + gridSize && drawingAllowed)
-    {
-        drawpixels()
-        deploy()
-    }
+  if (
+    origMouseX > offsetX &&
+    origMouseX < offsetX + gridSize &&
+    origMouseY > offsetY &&
+    origMouseY < offsetY + gridSize &&
+    drawingAllowed
+  ) {
+    drawpixels();
+    deploy();
+  }
 }
 
-function dataRef(data, id)
-{
-    return firebase.database().ref('pixelBoards/'+id+"/"+data);
+function dataRef(data, id) {
+  return firebase.database().ref("pixelBoards/" + id + "/" + data);
 }
 
 function existsCallBack(id, exists) {
-    if (exists) {
-        connectB(id)
-        invDisp('boardMenu')
-        console.log(">> Connected to "+id);
-      } else {
-        alert('Board "' + id + '" does not exist...');
-      }
+  if (exists) {
+    connectB(id);
+    invDisp("boardMenu");
+    console.log(">> Connected to " + id);
+  } else {
+    alert('Холст "' + id + '" не существует...');
+  }
 }
 
 function connectionTry(id) {
-    console.log("Conection started...");
-    dataRef("name",BID).off()
-    dataRef("cells",BID).off()
-    firebase.database().ref('pixelBoards').child(id).once('value', function(snapshot) {
-      var exists = (snapshot.val() !== null);
+  console.log("Conection started...");
+  dataRef("name", BID).off();
+  dataRef("cells", BID).off();
+  firebase
+    .database()
+    .ref("pixelBoards")
+    .child(id)
+    .once("value", function (snapshot) {
+      var exists = snapshot.val() !== null;
       existsCallBack(id, exists);
     });
-    console.log("Conection ended.");
+  console.log("Conection ended.");
 }
 
 function invDisp(elemId) {
-    let elem = document.getElementById(elemId)
+  let elem = document.getElementById(elemId);
 
-    if (elem.style.display == "none")
-    {
-        drawingAllowed = false;
-        elem.style.display = "flex"
-    }
-    else
-    {
-        drawingAllowed = true;
-        elem.style.display = "none"
-        console.log("menu invis");
-    }
+  if (elem.style.display == "none") {
+    drawingAllowed = false;
+    elem.style.display = "flex";
+  } else {
+    drawingAllowed = true;
+    elem.style.display = "none";
+    console.log("menu invis");
+  }
 }
 
-var BID = ""
+var BID = "";
 
 console.log("Verion 2");
 
-
-function connectB(boardId="") {
-    
-if(boardId != "")
-{
-    dataRef("name",boardId).on('value', function (snapshot) {
-        
-        if (snapshot.val() != null) {
-            document.getElementById("Name").innerText = snapshot.val()
-        }
-        else {
-            dataRef("name",boardId).set("New Name");
-        }
+function connectB(boardId = "") {
+  if (boardId != "") {
+    dataRef("name", boardId).on("value", function (snapshot) {
+      if (snapshot.val() != null) {
+        document.getElementById("Name").innerText = snapshot.val();
+        canvas.position(0, topBarHeight());
+      } else {
+        dataRef("name", boardId).set("New Name");
+      }
     });
 
-    dataRef("cells",boardId).on('value', function (snapshot) {
-        if (snapshot.val() != null) {
-            //console.log("cells exist!");
-            //console.log(snapshot.val());
-            grid = snapshot.val();
-            databaseloaded = true;
-            BID = boardId
-        }
-        else {
-            console.log("cells not found...");
-            dataRef("cells",boardId).set(grid);
-        }
+    dataRef("cells", boardId).on("value", function (snapshot) {
+      if (snapshot.val() != null) {
+        //console.log("cells exist!");
+        //console.log(snapshot.val());
+        grid = snapshot.val();
+        databaseloaded = true;
+        BID = boardId;
+      } else {
+        console.log("cells not found...");
+        dataRef("cells", boardId).set(grid);
+      }
     });
-}
+  }
 }
 
 function deploy() {
-    if(databaseloaded)
-    {
-        dataRef("cells",BID).set(grid)
-        console.log("Deployed!");
-    }
+  if (databaseloaded) {
+    dataRef("cells", BID).set(grid);
+    console.log("Deployed!");
+  }
 }
