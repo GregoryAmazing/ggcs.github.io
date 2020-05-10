@@ -57,7 +57,11 @@
   </div>
   
   <div class="overlay" id="topbar">
-    <button id="settings" class="toolbtn btn" onclick="invDisp('settingsMenu')"><i class="fas fa-cog"></i></button>
+    <div style="display: flex; flex-direction: row; width: 100px; justify-content: space-evenly;">
+      <button id="settings" class="toolbtn btn" onclick="invDisp('settingsMenu')"><i class="fas fa-cog"></i></button>
+      <button id="settings" class="toolbtn btn" onclick="saveImage()"><i class="fas fa-download"></i></button>  
+    </div>
+    
     <button id="Name" class="btn" onclick="invDisp('boardMenu')">---------</button>
   </div>
 

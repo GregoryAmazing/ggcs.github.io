@@ -51,7 +51,7 @@ body {
     top: 5;
     display: flex;
     justify-content: space-between;
-    padding: 0 1rem 0 1rem;
+    padding: 0 5px 0 5px;
     box-sizing: border-box;
 }
 

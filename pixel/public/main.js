@@ -9,6 +9,17 @@ let offsetY = 0;
 let gridSize = 0;
 
 let drawingAllowed = false;
+let savingImage = false;
+
+function saveImage() {
+    drawingAllowed = false;
+    savingImage = true;
+    resizeCanvas(gridSize+gridWidth,gridSize+gridWidth);
+    saveCanvas(canvas, 'MyPixelArt', 'png');
+    resize();
+    savingImage = false;
+    drawingAllowed = true;
+}
 
 function setls(key, val) {
   return localStorage.setItem(key, val);
@@ -31,9 +42,12 @@ function saveSettings() {
   );
 }
 
+var curOnline = 0;
+
 window.onload = function () {
   if (getls("settings")) loadSettings(getls("settings"));
   else setls("settings", '{"gridWidth": 1, "gridColor": 0}');
+
 };
 
 function topBarHeight() {
@@ -147,7 +161,11 @@ function updateGridWidth(newWidth) {
   document.getElementById("gridWidthRange").value = newWidth;
   gridWidth = JSON.parse(newWidth);
 }
+
 function fillGrid() {
+
+  if (savingImage) translate(-offsetX+gridWidth,-offsetY+gridWidth);
+
   background(255);
   strokeWeight(0);
   stroke(0);
@@ -156,10 +174,10 @@ function fillGrid() {
 
   if (gridWidth != 0)
     rect(
-      offsetX - gridWidth / 2,
-      offsetY - gridWidth / 2,
-      squareSize * 16,
-      squareSize * 16
+      offsetX - gridWidth,
+      offsetY - gridWidth,
+      squareSize * 16 + gridWidth,
+      squareSize * 16 +gridWidth
     );
   else rect(offsetX - 1, offsetY - 1, squareSize * 16 + 3, squareSize * 16 + 3);
 
@@ -181,6 +199,7 @@ function fillGrid() {
       );
     }
   }
+
 }
 
 function draw() {
