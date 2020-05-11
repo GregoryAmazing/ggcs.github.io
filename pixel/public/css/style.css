@@ -118,14 +118,12 @@ body {
 }
 
 .centerDiv {
-    z-index: 3;
+    z-index: 4;
     position: absolute;
-    padding: 160%;
     top: 30%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
     text-align: center;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -207,4 +205,14 @@ body {
 #boardMenu{
     top: 35%;
     height: 350px;
+}
+
+#blackglass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3;
 }

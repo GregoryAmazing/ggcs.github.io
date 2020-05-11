@@ -352,10 +352,11 @@ function invDisp(elemId) {
   if (elem.style.display == "none") {
     drawingAllowed = false;
     elem.style.display = "flex";
+    document.getElementById('blackglass').style.display = "block";
   } else {
     drawingAllowed = true;
     elem.style.display = "none";
-    console.log("menu invis");
+    document.getElementById('blackglass').style.display = "none";
   }
 }
 
