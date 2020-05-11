@@ -50,6 +50,13 @@ window.onload = function () {
 
 };
 
+setInterval(() => {
+    if (width != window.innerWidth || height != window.innerHeight - bottomBarHeight() - topBarHeight()) {
+        resize();
+        console.log("RESIZED");
+    }
+}, 500);
+
 function topBarHeight() {
   return document.getElementById("topbar").clientHeight + 4;
 }
@@ -85,7 +92,7 @@ function resize() {
   updateGrid();
 }
 
-window.addEventListener("resize", resize);
+//window.addEventListener("resize", resize);
 
 var colorChoice = "#000000";
 
