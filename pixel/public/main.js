@@ -215,6 +215,9 @@ document.getElementById("idInput").addEventListener("keyup", (e) => {
 let origMouseX = 0;
 let origMouseY = 0;
 
+var oldGrid = [];
+var updatedPixels = [];
+
 function drawpixels() {
   for (var x = 0; x < squaresX; x++) {
     for (var y = 0; y < squaresY; y++) {
@@ -226,8 +229,12 @@ function drawpixels() {
         databaseloaded
       ) {
         if (mode == "pen") {
-          if (colorChoice == "#ffffff") grid[x][y] = 0;
-          else grid[x][y] = colorChoice;
+
+          if (colorChoice == "#ffffff")
+            grid[x][y] = 0;
+          else
+            grid[x][y] = colorChoice;
+
         } else if (mode == "eraser") {
           grid[x][y] = 0;
         } else if (mode == "dropper") {
@@ -243,6 +250,30 @@ function drawpixels() {
 function mousePressed() {
   origMouseX = mouseX;
   origMouseY = mouseY;
+  if (
+    origMouseX > offsetX &&
+    origMouseX < offsetX + gridSize &&
+    origMouseY > offsetY &&
+    origMouseY < offsetY + gridSize &&
+    drawingAllowed
+    ) {
+        //oldGrid = grid;
+        
+    }
+}
+
+function arrayDiff(arr1,arr2) {
+    let result = [];
+    for (let x = 0; x < arr1.length; x++) {
+        for (let y = 0; y < arr1.length; y++) {
+            //if ( arr1[x][y]===arr2[x][y] ) {
+                //console.log("im  updated!");
+                
+                //result.push({ color:arr1[x][y], x:x, y:y })
+            //}
+        }
+    }
+    return result;
 }
 
 function mouseDragged() {
@@ -265,13 +296,22 @@ function mouseReleased() {
     origMouseY < offsetY + gridSize &&
     drawingAllowed
   ) {
+    //arrayDiff(grid, oldGrid);
     drawpixels();
     deploy();
   }
 }
 
-function dataRef(data, id) {
-  return firebase.database().ref("pixelBoards/" + id + "/" + data);
+function dbRef(path) {
+  return firebase.database().ref(path);
+}
+
+function boardData(data, id=BID) {
+    return firebase.database().ref("pixelBoards/" + id + "/" + data);
+}
+
+function getCell(x,y,id=BID) {
+    return firebase.database().ref("pixelBoards/" + id + "/cells/" + y + "/" + x);
 }
 
 function existsCallBack(id, exists) {
@@ -286,8 +326,8 @@ function existsCallBack(id, exists) {
 
 function connectionTry(id) {
   console.log("Conection started...");
-  dataRef("name", BID).off();
-  dataRef("cells", BID).off();
+  boardData("name", BID).off();
+  boardData("cells", BID).off();
   firebase
     .database()
     .ref("pixelBoards")
@@ -317,34 +357,35 @@ var BID = "";
 console.log("Verion 2");
 
 function connectB(boardId = "") {
-  if (boardId != "") {
-    dataRef("name", boardId).on("value", function (snapshot) {
-      if (snapshot.val() != null) {
-        document.getElementById("Name").innerText = snapshot.val();
-        canvas.position(0, topBarHeight());
-      } else {
-        dataRef("name", boardId).set("New Name");
-      }
-    });
-
-    dataRef("cells", boardId).on("value", function (snapshot) {
-      if (snapshot.val() != null) {
-        //console.log("cells exist!");
-        //console.log(snapshot.val());
-        grid = snapshot.val();
-        databaseloaded = true;
-        BID = boardId;
-      } else {
-        console.log("cells not found...");
-        dataRef("cells", boardId).set(grid);
-      }
-    });
-  }
+    if (boardId != "") {
+        boardData("name", boardId).on("value", function (snapshot) {
+            if (snapshot.val() != null) {
+                document.getElementById("Name").innerText = snapshot.val();
+                canvas.position(0, topBarHeight());
+            }
+            else {
+                boardData("name", boardId).set("New Name");
+            }
+        });
+        boardData("cells", boardId).on("value", function (snapshot) {
+            if (snapshot.val() != null) {
+                //console.log("cells exist!");
+                //console.log(snapshot.val());
+                grid = snapshot.val();
+                databaseloaded = true;
+                BID = boardId;
+            }
+            else {
+                console.log("cells not found...");
+                boardData("cells", boardId).set(grid);
+            }
+        });
+    }
 }
 
 function deploy() {
   if (databaseloaded) {
-    dataRef("cells", BID).set(grid);
+    boardData("cells", BID).set(grid);
     console.log("Deployed!");
   }
 }
