@@ -407,7 +407,7 @@ function deploy() {
             getCell(newPixel.y, newPixel.x).set(newPixel.color)
         }
       }
-    boardData("cells", BID).set(grid);
+    //boardData("cells", BID).set(grid);
     console.log("Deployed!");
   }
 }
