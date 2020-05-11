@@ -292,18 +292,6 @@ function mouseDragged() {
   }
 }
 
-function mouseReleased() {
-  if (
-    origMouseX > offsetX &&
-    origMouseX < offsetX + gridSize &&
-    origMouseY > offsetY &&
-    origMouseY < offsetY + gridSize &&
-    drawingAllowed
-  ) {
-    drawpixels();
-    deploy();
-  }
-}
 
 function mouseClicked() {
     if (
@@ -313,7 +301,10 @@ function mouseClicked() {
         origMouseY < offsetY + gridSize &&
         drawingAllowed
       ) {
+        drawpixels();
         updatedPixels = arrayDiff(grid, oldGrid);
+        deploy();
+    
     }
 }
 
