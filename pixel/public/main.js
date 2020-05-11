@@ -62,7 +62,7 @@ function topBarHeight() {
 }
 
 function bottomBarHeight() {
-  return document.getElementById("bottombar").clientHeight + 2;
+  return document.getElementById("bottombar").clientHeight + 12;
 }
 
 let canvasHeight = window.innerHeight - bottomBarHeight() - topBarHeight();
