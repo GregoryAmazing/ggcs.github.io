@@ -262,10 +262,9 @@ function mousePressed() {
     origMouseX < offsetX + gridSize &&
     origMouseY > offsetY &&
     origMouseY < offsetY + gridSize &&
-    drawingAllowed
+    drawingAllowed 
     ) {
-        //oldGrid = grid;
-        
+        oldGrid = grid.map(v=>v.slice());
     }
 }
 
@@ -273,11 +272,9 @@ function arrayDiff(arr1,arr2) {
     let result = [];
     for (let x = 0; x < arr1.length; x++) {
         for (let y = 0; y < arr1.length; y++) {
-            //if ( arr1[x][y]===arr2[x][y] ) {
-                //console.log("im  updated!");
-                
-                //result.push({ color:arr1[x][y], x:x, y:y })
-            //}
+            if ( arr1[x][y]!=arr2[x][y] ) {
+                result.push({ color:arr1[x][y], x:x, y:y })
+            }
         }
     }
     return result;
@@ -303,10 +300,21 @@ function mouseReleased() {
     origMouseY < offsetY + gridSize &&
     drawingAllowed
   ) {
-    //arrayDiff(grid, oldGrid);
     drawpixels();
     deploy();
   }
+}
+
+function mouseClicked() {
+    if (
+        origMouseX > offsetX &&
+        origMouseX < offsetX + gridSize &&
+        origMouseY > offsetY &&
+        origMouseY < offsetY + gridSize &&
+        drawingAllowed
+      ) {
+        updatedPixels = arrayDiff(grid, oldGrid);
+    }
 }
 
 function dbRef(path) {
@@ -393,6 +401,12 @@ function connectB(boardId = "") {
 
 function deploy() {
   if (databaseloaded) {
+      if (updatedPixels != []) {
+        for (let i = 0; i < updatedPixels.length; i++) {
+            let newPixel = updatedPixels[i];
+            getCell(newPixel.y, newPixel.x).set(newPixel.color)
+        }
+      }
     boardData("cells", BID).set(grid);
     console.log("Deployed!");
   }
