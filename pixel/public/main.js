@@ -40,6 +40,8 @@ function saveSettings() {
     "settings",
     '{"gridWidth": ' + gridWidth + ', "gridColor": ' + gridColor + "}"
   );
+  drawingAllowed = false;
+  setTimeout(function(){ drawingAllowed = true }, 10);
 }
 
 function is_touch_device() {  
