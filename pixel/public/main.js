@@ -47,7 +47,6 @@ var curOnline = 0;
 window.onload = function () {
   if (getls("settings")) loadSettings(getls("settings"));
   else setls("settings", '{"gridWidth": 1, "gridColor": 0}');
-
 };
 
 setInterval(() => {
@@ -62,7 +61,7 @@ function topBarHeight() {
 }
 
 function bottomBarHeight() {
-  return document.getElementById("bottombar").clientHeight + 12;
+  return document.getElementById("bottombar").clientHeight + 4;
 }
 
 let canvasHeight = window.innerHeight - bottomBarHeight() - topBarHeight();
@@ -84,7 +83,7 @@ function updateGrid() {
   }
 
   gridSize = squaresX * squareSize;
-  offsetY = sidemargin / 2 + (canvasHeight / 2 - gridSize / 2);
+  offsetY = canvasHeight / 2 - gridSize / 2;
 }
 
 function resize() {
@@ -183,10 +182,15 @@ function fillGrid() {
     rect(
       offsetX - gridWidth,
       offsetY - gridWidth,
-      squareSize * 16 + gridWidth,
+      squareSize * 16 +gridWidth,
       squareSize * 16 +gridWidth
     );
-  else rect(offsetX - 1, offsetY - 1, squareSize * 16 + 3, squareSize * 16 + 3);
+  else rect(
+    offsetX - 1,
+    offsetY - 1,
+    squareSize * 16 +3,
+    squareSize * 16 +3
+  );
 
   for (var x = 0; x < squaresX; x++) {
     for (var y = 0; y < squaresY; y++) {
@@ -359,7 +363,7 @@ function connectB(boardId = "") {
     if (boardId != "") {
         boardData("name", boardId).on("value", function (snapshot) {
             if (snapshot.val() != null) {
-                document.getElementById("Name").innerText = snapshot.val();
+                document.getElementById("name").innerText = snapshot.val();
                 canvas.position(0, topBarHeight());
             }
             else {
@@ -384,8 +388,46 @@ function connectB(boardId = "") {
 
 function deploy(x,y,color=colorChoice) {
   if (databaseloaded) {
-    console.log("Deployed:",x,y,color);
     getCell(y, x).set(color);
+    //console.log("Deployed:",x,y,color);
     //boardData("cells", BID).set(grid);
   }
 }
+
+function is_touch_device() {  
+  try {  
+    document.createEvent("TouchEvent");  
+    return true;  
+  } catch (e) {  
+    return false;  
+  }  
+}
+
+
+function clicked(selector,func) {
+  document.querySelectorAll(selector).forEach(elem => {
+    if (is_touch_device()) {
+      elem.addEventListener("touchstart", func)
+    } else {
+      elem.addEventListener("click", func);
+    }
+  });
+}
+
+clicked('#pen',function(){updMode('pen')});
+clicked('#eraser',function(){updMode('eraser')});
+clicked('#dropper',function(){updMode('dropper')});
+
+clicked('#publicBtn1',function(){connectionTry('public1')});
+clicked('#publicBtn2',function(){connectionTry('public2')});
+clicked('#publicBtn3',function(){connectionTry('public3')});
+clicked('#publicBtn4',function(){connectionTry('public4')});
+
+clicked('#gridColorBlack',function(){updateGridColor(0)});
+clicked('#gridColorWhite',function(){updateGridColor(255)});
+
+clicked('#settings',function(){invDisp('settingsMenu')});
+clicked('#savesettings',function(){invDisp('settingsMenu');saveSettings();});
+clicked('#savepixelart',function(){saveImage()});
+
+clicked('#name',function(){invDisp('boardMenu')});

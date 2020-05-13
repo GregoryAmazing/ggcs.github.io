@@ -26,18 +26,18 @@
     <canvas id="picker" width="150" height="150" style="width: 150px; height: 150px;"></canvas>
     
     <div id="toolbar">
-      <button class="toolbtn btn toolselect" id="pen" onclick="updMode(`pen`)"  ><i class="fas fa-pen"></i></button>
-      <button class="toolbtn btn" id="eraser" onclick="updMode(`eraser`)"  ><i class="fas fa-eraser"></i></button>
-      <button class="toolbtn btn" id="dropper" onclick="updMode(`dropper`)"  ><i class="fas fa-eye-dropper"></i></button>
+      <button class="toolbtn btn tool toolselect" id="pen"><i class="fas fa-pen"></i></button>
+      <button class="toolbtn btn tool" id="eraser"><i class="fas fa-eraser"></i></button>
+      <button class="toolbtn btn tool" id="dropper"><i class="fas fa-eye-dropper"></i></button>
     </div>
   </div>
 
   <div class="centerDiv" id="boardMenu">
     <p>Подкючиться к Публичному Холсту:</p>
-    <button class="btn" style="display:inline-block" onclick="connectionTry('public1')">Публичный Холст 1</button>
-    <button class="btn" style="display:inline-block" onclick="connectionTry('public2')">Публичный Холст 2</button>
-    <button class="btn" style="display:inline-block" onclick="connectionTry('public3')">Публичный Холст 3</button>
-    <button class="btn" style="display:inline-block" onclick="connectionTry('public4')">Публичный Холст 4</button>
+    <button class="btn" id="publicBtn1" style="display:inline-block" >Публичный Холст 1</button>
+    <button class="btn" id="publicBtn2" style="display:inline-block" >Публичный Холст 2</button>
+    <button class="btn" id="publicBtn3" style="display:inline-block" >Публичный Холст 3</button>
+    <button class="btn" id="publicBtn4" style="display:inline-block" >Публичный Холст 4</button>
 
     <p>Подкючиться к Холсту по ID:</p>
     <input class="btn" type="text" id="idInput" placeholder="ID Холста">
@@ -49,10 +49,10 @@
     <input type="range" min="0" max="2" value="1" class="slider" id="gridWidthRange" oninput="updateGridWidth(this.value)">
     <p>Цвет сетки:</p>
     <div id="gridColors">
-      <button class="toolbtn btn gridColor" onclick="updateGridColor(0)" style="background: black;"></button>
-      <button class="toolbtn btn gridColor" onclick="updateGridColor(255)"></button>
+      <button class="toolbtn btn gridColor" id="gridColorBlack" style="background: black;"></button>
+      <button class="toolbtn btn gridColor" id="gridColorWhite" ></button>
     </div>
-    <button class="btn" style="display:inline-block;" onclick="invDisp('settingsMenu');saveSettings();">Сохранить</button>
+    <button class="btn" style="display:inline-block;" id="savesettings">Сохранить</button>
 
   </div>
 
@@ -60,11 +60,11 @@
   
   <div class="overlay" id="topbar">
     <div style="display: flex; flex-direction: row; width: 100px; justify-content: space-evenly;">
-      <button id="settings" class="toolbtn btn" onclick="invDisp('settingsMenu')"><i class="fas fa-cog"></i></button>
-      <button id="settings" class="toolbtn btn" onclick="saveImage()"><i class="fas fa-download"></i></button>  
+      <button id="settings" class="toolbtn btn" ><i class="fas fa-cog"></i></button>
+      <button id="savepixelart" class="toolbtn btn" ><i class="fas fa-download"></i></button>  
     </div>
     
-    <button id="Name" class="btn" onclick="invDisp('boardMenu')">---------</button>
+    <button id="name" class="btn">---------</button>
   </div>
 
 </body>
