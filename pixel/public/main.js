@@ -222,9 +222,6 @@ document.getElementById("idInput").addEventListener("keyup", (e) => {
 let origMouseX = 0;
 let origMouseY = 0;
 
-var oldGrid = [];
-var updatedPixels = [];
-
 function drawpixels() {
   for (var x = 0; x < squaresX; x++) {
     for (var y = 0; y < squaresY; y++) {
@@ -236,6 +233,8 @@ function drawpixels() {
         databaseloaded
       ) {
         if (mode == "pen") {
+          if(grid[x][y]!=colorChoice)
+            deploy(x,y);
 
           if (colorChoice == "#ffffff")
             grid[x][y] = 0;
@@ -243,7 +242,12 @@ function drawpixels() {
             grid[x][y] = colorChoice;
 
         } else if (mode == "eraser") {
+
+          if(grid[x][y]!=0)
+            deploy(x,y,0);
+
           grid[x][y] = 0;
+
         } else if (mode == "dropper") {
           kcolorpicker.setColor(grid[x][y]);
           updMode("pen");
@@ -257,15 +261,6 @@ function drawpixels() {
 function mousePressed() {
   origMouseX = mouseX;
   origMouseY = mouseY;
-  if (
-    origMouseX > offsetX &&
-    origMouseX < offsetX + gridSize &&
-    origMouseY > offsetY &&
-    origMouseY < offsetY + gridSize &&
-    drawingAllowed 
-    ) {
-        oldGrid = grid.map(v=>v.slice());
-    }
 }
 
 function arrayDiff(arr1,arr2) {
@@ -302,9 +297,6 @@ function mouseClicked() {
         drawingAllowed
       ) {
         drawpixels();
-        updatedPixels = arrayDiff(grid, oldGrid);
-        deploy();
-    
     }
 }
 
@@ -390,15 +382,10 @@ function connectB(boardId = "") {
     }
 }
 
-function deploy() {
+function deploy(x,y,color=colorChoice) {
   if (databaseloaded) {
-      if (updatedPixels != []) {
-        for (let i = 0; i < updatedPixels.length; i++) {
-            let newPixel = updatedPixels[i];
-            getCell(newPixel.y, newPixel.x).set(newPixel.color)
-        }
-      }
+    console.log("Deployed:",x,y,color);
+    getCell(y, x).set(color);
     //boardData("cells", BID).set(grid);
-    console.log("Deployed!");
   }
 }
