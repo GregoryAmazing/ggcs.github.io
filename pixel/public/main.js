@@ -42,6 +42,15 @@ function saveSettings() {
   );
 }
 
+function is_touch_device() {  
+  try {  
+    document.createEvent("TouchEvent");  
+    return true;  
+  } catch (e) {  
+    return false;  
+  }  
+}
+
 var curOnline = 0;
 
 window.onload = function () {
@@ -262,11 +271,6 @@ function drawpixels() {
   }
 }
 
-function mousePressed() {
-  origMouseX = mouseX;
-  origMouseY = mouseY;
-}
-
 function arrayDiff(arr1,arr2) {
     let result = [];
     for (let x = 0; x < arr1.length; x++) {
@@ -279,7 +283,7 @@ function arrayDiff(arr1,arr2) {
     return result;
 }
 
-function mouseDragged() {
+function dragDraw() {
   if (
     origMouseX > offsetX &&
     origMouseX < offsetX + gridSize &&
@@ -291,18 +295,36 @@ function mouseDragged() {
   }
 }
 
-
-function mouseClicked() {
-    if (
-        origMouseX > offsetX &&
-        origMouseX < offsetX + gridSize &&
-        origMouseY > offsetY &&
-        origMouseY < offsetY + gridSize &&
-        drawingAllowed
-      ) {
-        drawpixels();
-    }
+function tapDraw() {
+  origMouseX = mouseX;
+  origMouseY = mouseY;
+  if (
+    origMouseX > offsetX &&
+    origMouseX < offsetX + gridSize &&
+    origMouseY > offsetY &&
+    origMouseY < offsetY + gridSize &&
+    drawingAllowed
+  ) {
+    drawpixels();
 }
+}
+
+if (is_touch_device) {
+  function touchMoved() {
+    dragDraw();
+  }
+  function touchStarted() {
+    tapDraw();
+  }
+} else {
+  function mouseDragged() {
+    dragDraw();
+  }
+  function mouseClicked() {
+    tapDraw();
+  }
+}
+
 
 function dbRef(path) {
   return firebase.database().ref(path);
@@ -393,16 +415,6 @@ function deploy(x,y,color=colorChoice) {
     //boardData("cells", BID).set(grid);
   }
 }
-
-function is_touch_device() {  
-  try {  
-    document.createEvent("TouchEvent");  
-    return true;  
-  } catch (e) {  
-    return false;  
-  }  
-}
-
 
 function clicked(selector,func) {
   document.querySelectorAll(selector).forEach(elem => {
