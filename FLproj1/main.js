@@ -294,7 +294,7 @@ $("#endQestions").click(function () {
             if (index < unanswered.length-1) {
                 alertString+="вопрос №"+element+", "
             } else {
-                alertString+="вопрос №"+element+". Вернитесь и ответте на них что бы завершить опрос."
+                alertString+="вопрос №"+element+". Вернитесь и ответьте на них чтобы завершить опрос."
             }
             
         });
