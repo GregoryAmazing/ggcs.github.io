@@ -18,18 +18,9 @@
     display: none;
 }
 
-.bottom-bar{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    justify-content: space-between;
-    display: flex;
-}
-
 .bottom-bar button {
     font-size: 1.5rem;
+    display: none;
 }
 
 #textInput, #numInput{

@@ -30,6 +30,33 @@ function genAnsHTML(innerText) {
     return '<div class="radio-container">' + innerText + '</div>';
 }
 
+var unanswered = []
+
+function getUnanswered() {
+    unanswered = [];
+    $(".question-box").each(function (index, element) {
+        let questionsIsAnswered = false;
+        let hasAdditionalInput = $(element).find(".additional-input").length!=0;
+        let additionalInput = $(element).find(".additional-input");
+        let ansIsNo = false;
+        $(element).find(".radio-container").each(function(childIndex, childElement) {
+            if (childElement.classList.contains("checked")) {
+                questionsIsAnswered = true;
+                ansIsNo = childElement.classList.contains("ans-no")           
+            }
+        })
+        console.log(ansIsNo);
+        
+        if (hasAdditionalInput && additionalInput.find(".textnum-input")[0].value == "" && !ansIsNo)
+        {
+            questionsIsAnswered = false;
+        }
+        if (!questionsIsAnswered) {
+            unanswered.push($(".question-box").index(element)+1);
+        }
+    });
+}
+
 function addQuestionsHTML(questionsArr) {
     let questionBody = $("#question-body");
     let questionHTML = '';
@@ -65,7 +92,7 @@ function addQuestionsHTML(questionsArr) {
                             <div class="radio-container ans-yes">Да</div>
                             <div class="radio-container ans-no">Нет</div>
 
-                            <div id="numInput">
+                            <div id="numInput" class="additional-input">
                                 <h4 class="input-help">Введите число:</h4>
                                 <input class="form-control form-control-lg mb-4 textnum-input" type="number"
                                     placeholder="Нажмите что бы написать" id="example-number-input">
@@ -87,7 +114,7 @@ function addQuestionsHTML(questionsArr) {
                             <div class="radio-container ans-yes">Да</div>
                             <div class="radio-container ans-no">Нет</div>
 
-                            <div id="textInput">
+                            <div id="textInput"  class="additional-input">
                                 <h4 class="input-help">Опишите:</h4>
                                 <textarea class="form-control form-control-lg mb-4 textnum-input"
                                     id="exampleFormControlTextarea1" rows="4" placeholder="Нажмите что бы написать"></textarea>
@@ -200,6 +227,20 @@ function updateProgressBar() {
 function updateQuestionBody() {
     $(".question-box").hide();
     $("#question-body #question" + curQuestionNum).css("display", "contents");
+    
+    $("#endQestions").hide();
+    if (curQuestionNum<=1) {
+        $("#prevQestion").hide()
+        $("#nextQestion").show()
+    } else if (curQuestionNum>=questionsAmount) {
+        $("#nextQestion").hide()
+        $("#prevQestion").show()
+
+        $("#endQestions").show()
+    } else {
+        $("#prevQestion").show()
+        $("#nextQestion").show()
+    }
 }
 
 function setProgress(maxValue, startValue = 0) {
@@ -235,3 +276,24 @@ $("#nextQestion").click(function () {
 $("#prevQestion").click(function () {
     progressSubtract()
 });
+
+$("#endQestions").click(function () {
+    getUnanswered()
+    if (unanswered.length > 0) {
+        let alertString = "Вы не ответили на данные вопросы: "
+        unanswered.forEach(function(element, index) {
+            if (index < unanswered.length-1) {
+                alertString+="вопрос №"+element+", "
+            } else {
+                alertString+="вопрос №"+element+". Вернитесь и ответте на них что бы завершить опрос."
+            }
+            
+        });
+        alert(alertString)
+        alertString = "";
+    } else {
+        console.log("Send answeres to db.");
+    }
+});
+
+
