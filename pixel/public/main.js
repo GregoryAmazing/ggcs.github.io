@@ -155,6 +155,7 @@ function setup() {
       grid[x][y] = 0;
     }
   }
+
 }
 
 function create2DArray() {
@@ -365,6 +366,33 @@ function connectionTry(id) {
   console.log("Conection ended.");
 }
 
+function connectB(boardId = "") {
+  if (boardId != "") {
+      boardData("name", boardId).on("value", function (snapshot) {
+          if (snapshot.val() != null) {
+              document.getElementById("name").innerText = snapshot.val();
+              canvas.position(0, topBarHeight());
+          }
+          else {
+              boardData("name", boardId).set("New Name");
+          }
+      });
+      boardData("cells", boardId).on("value", function (snapshot) {
+          if (snapshot.val() != null) {
+              //console.log("cells exist!");
+              //console.log(snapshot.val());
+              grid = snapshot.val();
+              databaseloaded = true;
+              BID = boardId;
+          }
+          else {
+              console.log("cells not found...");
+              boardData("cells", boardId).set(grid);
+          }
+      });
+  }
+}
+
 function invDisp(elemId) {
   let elem = document.getElementById(elemId);
 
@@ -382,33 +410,6 @@ function invDisp(elemId) {
 var BID = "";
 
 console.log("Verion 2");
-
-function connectB(boardId = "") {
-    if (boardId != "") {
-        boardData("name", boardId).on("value", function (snapshot) {
-            if (snapshot.val() != null) {
-                document.getElementById("name").innerText = snapshot.val();
-                canvas.position(0, topBarHeight());
-            }
-            else {
-                boardData("name", boardId).set("New Name");
-            }
-        });
-        boardData("cells", boardId).on("value", function (snapshot) {
-            if (snapshot.val() != null) {
-                //console.log("cells exist!");
-                //console.log(snapshot.val());
-                grid = snapshot.val();
-                databaseloaded = true;
-                BID = boardId;
-            }
-            else {
-                console.log("cells not found...");
-                boardData("cells", boardId).set(grid);
-            }
-        });
-    }
-}
 
 function deploy(x,y,color=colorChoice) {
   if (databaseloaded) {
