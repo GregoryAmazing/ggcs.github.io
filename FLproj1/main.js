@@ -9,20 +9,32 @@ var testQuestions = [
         type: "multi-ans",
         text: "У вас бывает внезапное чувство паники?",
         answers: [{ text: "Очень часто", value: 3 }, { text: "Довольно часто", value: 2 },
-        { text: "Не так уж часто", value: 1 }, { text: "Совсем не бывает", value: 0 }]
+        { text: "Не так уж часто", value: 1 }, { text: "Совсем не бывает", value: 0 }],
+        questionnaireTitle: "Госпитальная Шкала Тревоги и Депрессии (HADS)"
     },
     {
         type: "yes-no-text",
-        text: "У вас бывают судороги?"
+        text: "У вас бывают судороги?",
+        questionnaireTitle: "Симптомы"
     },
     {
         type: "yes-no-num",
         text: "У вас бывает повышение температуры?",
-        helpText: "До скольки градусов?"
+        helpText: "До скольки градусов?",
+        questionnaireTitle: "Симптомы"
     },
     {
         type: "yes-no-regular",
-        text: "У вас бывает чувство сдавления в груди?"
+        text: "У вас бывает чувство сдавления в груди?",
+        questionnaireTitle: "Симптомы"
+    },
+    {
+        type: "multi-ans",
+        text: "Как бы вы оценили свое здоровье сейчас по сравнению с тем, что было год назад?",
+        answers: [{ text: "Значительно лучше", value: 1 }, { text: "Несколько лучше", value: 2 },
+        { text: "Примерно так же", value: 3 }, { text: "Несколько хуже", value: 4 }, 
+        { text: "Гораздо хуже", value: 5 }],
+        questionnaireTitle: "SF-36. Анкета оценки качества жизни"
     }
 ]
 
@@ -45,7 +57,6 @@ function getUnanswered() {
                 ansIsNo = childElement.classList.contains("ans-no")           
             }
         })
-        console.log(ansIsNo);
         
         if (hasAdditionalInput && additionalInput.find(".textnum-input")[0].value == "" && !ansIsNo)
         {
@@ -71,7 +82,7 @@ function addQuestionsHTML(questionsArr) {
                     questionHTML = `
                     <div id="question`+ questionNum + `" class="question-box">
                         <div id="questionHead">
-                            <h2 class="mb-4"></h2>
+                            <h3 class="mb-4"></h3>
                         </div>
 
                         <div class="questionAnswers">
@@ -85,7 +96,7 @@ function addQuestionsHTML(questionsArr) {
                     questionHTML = `
                     <div id="question`+ questionNum + `" class="question-box">
                         <div id="questionHead">
-                            <h2 class="mb-4"></h2>
+                            <h3 class="mb-4"></h3>
                         </div>
 
                         <div class="questionAnswers">
@@ -107,7 +118,7 @@ function addQuestionsHTML(questionsArr) {
                     questionHTML = `
                     <div id="question`+ questionNum + `" class="question-box">
                         <div id="questionHead">
-                            <h2 class="mb-4"></h2>
+                            <h3 class="mb-4"></h3>
                         </div>
 
                         <div class="questionAnswers">
@@ -129,7 +140,7 @@ function addQuestionsHTML(questionsArr) {
                     questionHTML = `
                     <div id="question`+ questionNum + `" class="question-box">
                         <div id="questionHead">
-                            <h2 class="mb-4"></h2>
+                            <h3 class="mb-4"></h3>
                         </div>
 
                         <div class="questionAnswers">
@@ -150,10 +161,7 @@ function addQuestionsHTML(questionsArr) {
             let questionBoxAns = questionBox.find(".questionAnswers");
 
             questionBox.css("display", "contents");
-            questionBox.find("#questionHead>h2").text(questionObj.text);
-
-            console.log(questionBox.find("#questionHead>h2"));
-
+            questionBox.find("#questionHead>h3").text(questionObj.text);
 
             if (questionObj.type == "multi-ans") {
                 questionBoxAns.empty();
@@ -227,6 +235,7 @@ function updateProgressBar() {
 function updateQuestionBody() {
     $(".question-box").hide();
     $("#question-body #question" + curQuestionNum).css("display", "contents");
+    $("#questionnaire-title").text(testQuestions[curQuestionNum-1].questionnaireTitle)
     
     $("#endQestions").hide();
     if (curQuestionNum<=1) {
@@ -265,7 +274,7 @@ function progressSubtract(amount = 1) {
     }
 }
 
-setProgress(4, 0);
+setProgress(testQuestions.length, 0);
 addQuestionsHTML(testQuestions);
 progressAdd();
 
@@ -293,6 +302,8 @@ $("#endQestions").click(function () {
         alertString = "";
     } else {
         console.log("Send answeres to db.");
+        $("#questionnaire").hide()
+        $("#questionnaire-end-card").show()
     }
 });
 
