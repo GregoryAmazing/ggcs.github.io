@@ -17,36 +17,30 @@
 </head>
 
 <body class="m-3">
-    <div id="questionnaire">
-        <div class="progress questions-progress-max" style="height: 30px; border-radius: .60rem;">
-            <div class="progress-bar questions-progress" role="progressbar" style="width: 0%; border-radius: .60rem;">
-            </div>
+
+    <div class="progress questions-progress-max" style="height: 30px; border-radius: .60rem;">
+        <div class="progress-bar questions-progress" role="progressbar" style="width: 0%; border-radius: .60rem;"></div>
+    </div>
+    <h6 class="mt-2" style="color: #0058b1;">Госпитальная Шкала Тревоги и Депрессии (HADS)</h6>
+
+    <h4 class="mt-2">Вопрос <span class="" id="curQuestionNum">0</span><small>/</small><small
+            id="questionsAmount">0</small>
+    </h4>
+    <hr style="margin-top: 1rem;  margin-bottom: 0.5rem;" />
+
+    <div id="main-content">
+        <div id="question-body">
         </div>
-        <h6 class="mt-2" id="questionnaire-title" style="color: #0058b1;">Госпитальная Шкала Тревоги и Депрессии (HADS)
-        </h6>
 
-        <h4 class="mt-2">Вопрос <span class="" id="curQuestionNum">0</span><small>/</small><small
-                id="questionsAmount">0</small>
-        </h4>
-        <hr style="margin-top: 1rem;  margin-bottom: 0.5rem;" />
-
-        <div id="main-content">
-            <div id="question-body">
-            </div>
-
-            <div class="bottom-bar mt-4 mb-3" style="display: flex;">
-                <button type="button" class="btn btn-secondary btn-lg" id="prevQestion">Назад</button>
-                <button type="button" class="btn btn-primary btn-lg" id="nextQestion"
-                    style="margin-left: auto;">Далее</button>
-                <button type="button" class="btn btn-success btn-lg" id="endQestions"
-                    style="margin-left: auto;;">Завершить</button>
-            </div>
+        <div class="bottom-bar mt-4 mb-3" style="display: flex;">
+            <button type="button" class="btn btn-secondary btn-lg" id="prevQestion">Назад</button>
+            <button type="button" class="btn btn-primary btn-lg" id="nextQestion"
+                style="margin-left: auto;">Далее</button>
+            <button type="button" class="btn btn-success btn-lg" id="endQestions"
+                style="margin-left: auto;;">Завершить</button>
         </div>
     </div>
 
-    <div id="questionnaire-end-card" class="text-center">
-          <h4>Спасибо за прхождение опроса!</h4>
-          <h5>Ваши ответы отправлены (компания)</h5>
     </div>
 
     <!-- Optional JavaScript -->
