@@ -1,0 +1,8 @@
+﻿  Game.cpp
+C:\Users\grego\source\repos\SDLgame\SDLgame\Game.cpp(95,96): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\grego\source\repos\SDLgame\SDLgame\Game.cpp(101,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\grego\source\repos\SDLgame\SDLgame\Game.cpp(105,103): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\grego\source\repos\SDLgame\SDLgame\Game.cpp(109,98): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\grego\source\repos\SDLgame\SDLgame\Game.cpp(118,93): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\grego\source\repos\SDLgame\SDLgame\Game.cpp(123,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  SDLgame.vcxproj -> C:\Users\grego\source\repos\SDLgame\x64\Debug\SDLgame.exe
