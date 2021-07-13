@@ -1,6 +1,8 @@
 canvas = document.querySelector('canvas');
 
-canvas.height = window.innerHeight;
+let botttom_offset = 220;
+
+canvas.height = window.innerHeight-botttom_offset;
 canvas.width = window.innerWidth;
 
 let cx = canvas.getContext('2d');
@@ -19,7 +21,7 @@ function point(pointobj, color = 'red', radius = 1) {
 
 function draw_points(poins_array) {
     poins_array.forEach(pnt => {
-        point(pnt, (color = 'red'), (radius = 3));
+        point(pnt, (color = '#c52e2e'), (radius = 3));
     });
 }
 
@@ -44,8 +46,8 @@ function genPoints(nSides) {
     let radius = 0;
     let points = [];
     if (canvas.width >= canvas.height)
-        radius = (canvas.height / 2 - 30) * scale;
-    else radius = (canvas.width / 2) * scale;
+        radius = (canvas.height / 2) * scale -40;
+    else radius = (canvas.width / 2) * scale -10;
 
     if (corners == 4) {
         radius *= scale * 2;
@@ -63,7 +65,7 @@ function genPoints(nSides) {
             //sin and cos are swithced,point 0 is bottom one
             let x = Math.round(Math.sin(a) * radius);
             let y = Math.round(Math.cos(a) * -radius);
-            x += 100 + canvas.width / 2;
+            x += canvas.width / 2;
             y += canvas.height / 2;
             points.push({ x: x, y: y });
         }
@@ -94,6 +96,16 @@ function update() {
     multiplier = $('#M').value;
     point_num = $('#N').value;
     redraw();
+}
+
+function canvas_update() {
+    canvas.height = window.innerHeight-botttom_offset;
+    canvas.width = window.innerWidth;
+    update();
+}
+
+window.onresize = () => {
+    canvas_update()
 }
 
 update();
